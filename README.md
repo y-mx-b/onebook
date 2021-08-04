@@ -1,3 +1,3 @@
 # onebook
 
-A description of this package.
+A universal bookmark manager (heavy WIP, nothing works).
