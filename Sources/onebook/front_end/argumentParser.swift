@@ -1,18 +1,24 @@
 import ArgumentParser
 
 struct Onebook: ParsableCommand {
-    @Argument var input: String
-    @Option var extraInput: String
-    @Flag var verbose = false
+    static var configuration = CommandConfiguration(
+            abstract: "A universal bookmark management utility.",
+            subcommands: [Parse.self])
 
-    mutating func run() throws {
-        if verbose {
-            print("Parsing input '\(input)'...")
-            if extraInput.isEmpty {
-                print("Parsing extra input '\(extraInput)'...")
-            }
+    struct Options: ParsableArguments {
+        // type with properties that will be shared across multiple subcommands
+    }
+}
+
+
+extension Onebook {
+    struct Parse: ParsableCommand {
+        static var configuration = CommandConfiguration(abstract: "Parse JSON.")
+
+        @OptionGroup var options: Onebook.Options
+
+        mutating func run() {
+            jsonTest()
         }
-        print("\(input)")
-        print("\(extraInput)")
     }
 }
