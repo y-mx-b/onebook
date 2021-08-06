@@ -17,8 +17,11 @@ extension Onebook {
 
         @OptionGroup var options: Onebook.Options
 
+        @Argument var browser: String
+
         mutating func run() {
-            jsonTest()
+            let bookmarkData: String? = getBookmarkData(browser: browser)
+            parseChromiumBookmarks(chromiumBookmarkData: bookmarkData)
         }
     }
 }
