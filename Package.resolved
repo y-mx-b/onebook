@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "TOMLDecoder",
-        "repositoryURL": "https://github.com/dduan/TOMLDecoder",
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "dbc8c43d20fe81f2f0e4e060c0c779010acbda06",
-          "version": "0.2.1"
+          "revision": "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
+          "version": "4.0.6"
         }
       }
     ]

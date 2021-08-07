@@ -1,1 +1,2 @@
+testYAML()
  Onebook.main()
