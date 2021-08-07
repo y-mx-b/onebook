@@ -3,11 +3,28 @@ import ArgumentParser
 
 func createBookmarksDirectory() {
     let dir = FileManager.default
-    let bookmarksPath = "\(NSHomeDirectory())/.bookmarks."
+    let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
     do {
     try dir.createDirectory(atPath: bookmarksPath, withIntermediateDirectories: false, attributes: nil)
     } catch {
-        print("Error")
+        print("ERROR: FAILED TO CREATE BOOKMARKS DIRECTORY")
+    }
+}
+
+func createBookmarksDirectoryPrompt() {
+    let permission = readLine()
+
+    switch permission!.uppercased() {
+    case "Y","YES":
+        print("Creating bookmarks directory...")
+        createBookmarksDirectory()
+    case "N", "NO":
+        print("Terminating.")
+    default:
+        print("ERROR: INVALID INPUT")
+        print("Create bookmarks directory?")
+        print("Y/N?:", terminator: " ")
+        createBookmarksDirectoryPrompt()
     }
 }
 
@@ -25,8 +42,9 @@ extension Onebook {
                 print(path)
             } catch {
                 print("Bookmarks directory not detected. Create bookmarks directory?")
-                print("Y/N?: ", terminator: "")
-                let permission = readLine()
+                print("Y/N?:", terminator: " ")
+
+                createBookmarksDirectoryPrompt()
             }
         }
     }
