@@ -9,6 +9,15 @@
           "revision": "83b23d940471b313427da226196661856f6ba3e0",
           "version": "0.4.4"
         }
+      },
+      {
+        "package": "TOMLDecoder",
+        "repositoryURL": "https://github.com/dduan/TOMLDecoder",
+        "state": {
+          "branch": null,
+          "revision": "dbc8c43d20fe81f2f0e4e060c0c779010acbda06",
+          "version": "0.2.1"
+        }
       }
     ]
   },
