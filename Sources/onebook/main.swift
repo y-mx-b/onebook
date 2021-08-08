@@ -1,2 +1,1 @@
-testYAML()
- Onebook.main()
+Onebook.main()
