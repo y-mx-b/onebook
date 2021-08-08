@@ -1,6 +1,6 @@
 import Foundation
 
-func getBookmarkData(browser: String) -> String? {
+func getBookmarkData(from browser: String) -> String? {
     var bookmarkData: String?
     switch(browser) {
         case "chromium":
@@ -8,10 +8,5 @@ func getBookmarkData(browser: String) -> String? {
         default:
             print("Browser not supported")
     }
-
-    if (bookmarkData == nil) {
-        return nil
-    } else {
-        return bookmarkData
-    }
+    return bookmarkData == nil ? nil : bookmarkData
 }
