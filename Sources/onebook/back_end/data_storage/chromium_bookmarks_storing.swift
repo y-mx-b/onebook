@@ -1,5 +1,7 @@
 import Foundation
 
-func storeBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt: bookmarksPath) {
+// TODO implement chromium bookmark data storage
+
+func storeBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
 
 }
