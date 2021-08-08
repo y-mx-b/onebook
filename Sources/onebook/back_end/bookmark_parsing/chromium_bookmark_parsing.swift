@@ -1,6 +1,6 @@
 import Foundation
 
-func parseChromiumBookmarks(chromiumBookmarkData: String?) {
+func parseChromiumBookmarks(_ chromiumBookmarkData: String?) {
     if (chromiumBookmarkData == nil) {
         print("Error: nil value")
     }

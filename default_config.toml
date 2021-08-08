@@ -1,0 +1,28 @@
+# A default configuration file for onebook written in TOML
+
+[import]
+default_browsers = [
+  "chromium",
+  # "chrome",
+  # "firefox",
+  # "safari",
+  # "qutebrowser"
+]
+
+[export]
+default_browsers = [
+  "chromium",
+  "chrome",
+  "firefox",
+  "safari",
+  "qutebrowser"
+]
+
+[sync]
+default_browsers = [
+  "chromium",
+  "chrome",
+  "firefox",
+  "safari",
+  "qutebrowser"
+]

@@ -19,7 +19,7 @@ func createBookmarksDirectoryPrompt() {
         print("Creating bookmarks directory...")
         createBookmarksDirectory()
     case "N", "NO":
-        print("Terminating.")
+        print("Terminating...")
     default:
         print("ERROR: INVALID INPUT")
         print("Create bookmarks directory?")
@@ -39,7 +39,6 @@ extension Onebook {
             let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
             do {
                 let path = try dir.contentsOfDirectory(atPath: bookmarksPath)
-                print(path)
             } catch {
                 print("Bookmarks directory not detected. Create bookmarks directory?")
                 print("Y/N?:", terminator: " ")
