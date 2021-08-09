@@ -55,7 +55,7 @@ SUBCOMMANDS:
 
 - [X] Implement Chromium bookmark parsing
 - [ ] Implementing Chromium bookmark data storage
-- [-] Implmenting config file
+- [ ] Implmenting config file
 
 ### Browser support
 
