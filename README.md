@@ -10,6 +10,8 @@ A universal bookmark manager (heavy WIP, nothing works).
 
 #### Homebrew
 
+#### Mint
+
 #### Building from Source
 
 NOTE: Requires `git` and the Swift Package Manager.
@@ -53,6 +55,7 @@ SUBCOMMANDS:
 
 - [X] Implement Chromium bookmark parsing
 - [ ] Implementing Chromium bookmark data storage
+- [-] Implmenting config file
 
 ### Browser support
 
