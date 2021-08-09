@@ -24,14 +24,14 @@ func createConfigPrompt() {
     print("Y/N?", terminator: " ")
     let input = readLine()
     switch input!.uppercased() {
-        case "Y":
-            createConfig()
-            print("Yes.")
-        case "N":
-            print("No.")
-        default:
-            print("ERROR: INVALID INPUT")
-            createConfigPrompt()
+    case "Y":
+        createConfig()
+        print("Yes.")
+    case "N":
+        print("No.")
+    default:
+        print("ERROR: INVALID INPUT")
+        createConfigPrompt()
     }
 }
 

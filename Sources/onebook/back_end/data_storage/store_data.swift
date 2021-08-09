@@ -17,7 +17,7 @@ func testFileReadWrite() {
         do {
             let testText2 = try String(contentsOf: fileURL, encoding: .utf8)
             print(testText2)
-        } catch{
+        } catch {
             print("Error")
         }
     }

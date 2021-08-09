@@ -15,7 +15,7 @@ func createBookmarksDirectoryPrompt() {
     let permission = readLine()
 
     switch permission!.uppercased() {
-    case "Y","YES":
+    case "Y", "YES":
         print("Creating bookmarks directory...")
         createBookmarksDirectory()
     case "N", "NO":

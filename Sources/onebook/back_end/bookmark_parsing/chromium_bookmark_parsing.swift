@@ -36,7 +36,7 @@ struct ChromiumBookmarks: Decodable {
 }
 
 func parseChromiumBookmarks(_ chromiumBookmarkData: String?) -> ChromiumBookmarks {
-    if (chromiumBookmarkData == nil) {
+    if chromiumBookmarkData == nil {
         print("ERROR: COULD NOT RETRIEVE BOOKMARK DATA")
     }
 
