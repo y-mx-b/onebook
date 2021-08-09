@@ -4,9 +4,10 @@ func getBookmarkData(from browser: String) -> String? {
     var bookmarkData: String?
     switch browser {
     case "chromium":
-        bookmarkData = getChromiumBookmarks()
+        let chromiumBookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
+        bookmarkData = getChromiumBookmarks(from: chromiumBookmarksPath)
     default:
-        print("Browser not supported")
+        print("Invalid browser")
     }
     return bookmarkData == nil ? nil : bookmarkData
 }

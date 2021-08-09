@@ -1,9 +1,9 @@
 import Foundation
 
-struct ChromiumBookmarks: Decodable {
-    let checksum: String
-    struct Roots: Decodable {
-        struct Children: Decodable {
+struct ChromiumBookmarks: Codable {
+    // let checksum: String
+    struct Roots: Codable {
+        struct Children: Codable {
             let date_added: String
             let guid: String
             let id: String
@@ -11,7 +11,7 @@ struct ChromiumBookmarks: Decodable {
             let type: String
             let url: String
         }
-        struct Folder: Decodable {
+        struct Folder: Codable {
             let children: [Children]
             let date_added: String
             let guid: String
@@ -19,7 +19,7 @@ struct ChromiumBookmarks: Decodable {
             let name: String
             let type: String
         }
-        struct NestedFolders: Decodable {
+        struct NestedFolders: Codable {
             let children: [Folder]
             let date_added: String
             let guid: String
@@ -46,9 +46,7 @@ func parseChromiumBookmarks(_ chromiumBookmarkData: String?) -> ChromiumBookmark
     return data
 }
 
-func getChromiumBookmarks() -> String? {
-    let chromiumBookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
-
+func getChromiumBookmarks(from chromiumBookmarksPath: URL) -> String? {
     do {
         let contents = try String(contentsOf: chromiumBookmarksPath, encoding: .utf8)
         return contents

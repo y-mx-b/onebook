@@ -15,7 +15,6 @@ extension Onebook {
 
         mutating func run() {
             let bookmarkData: String? = getBookmarkData(from: browser)
-            let chromiumBookmarkData = parseChromiumBookmarks(bookmarkData)
         }
     }
 }
