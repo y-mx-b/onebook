@@ -1,18 +1,19 @@
 import Foundation
 
 func importBookmarkData(from browser: String) {
-    switch browser {
-    case "chromium":
+    print(browser.uppercased())
+    switch browser.uppercased() {
+    case "CHROMIUM":
         let bookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
         let bookmarksData = parseChromiumBookmarks(getChromiumBookmarks(from: bookmarksPath))
         storeChromiumBookmarksData(bookmarksData, storeAt: bookmarksPath)
-    case "chrome":
+    case "CHROME":
         print("Chrome")
-    case "safari":
+    case "SAFARI":
         print("Safari")
-    case "firefox":
+    case "FIREFOX":
         print("Firefox")
-    case "qutebrowser":
+    case "QUTEBROWSER":
         print("Qutebrowser")
     default:
         print("Invalid browser")
