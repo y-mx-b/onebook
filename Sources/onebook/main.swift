@@ -1,2 +1,2 @@
-readFromConfig(getConfigData())
+// readFromConfig(getConfigData())
 Onebook.main()

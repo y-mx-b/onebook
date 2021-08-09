@@ -37,13 +37,20 @@ extension Onebook {
         mutating func run() {
             let dir = FileManager.default
             let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
-            do {
-                let path = try dir.contentsOfDirectory(atPath: bookmarksPath)
-            } catch {
-                print("Bookmarks directory not detected. Create bookmarks directory?")
+            var objCTrue: ObjCBool = true
+            if dir.fileExists(atPath: bookmarksPath, isDirectory: &objCTrue) {
+                print("Bookmarks directory found: \(bookmarksPath)")
+            } else {
+                print("Bookmarks directory not detected.")
+                print("Create bookmarks directory?")
                 print("Y/N?:", terminator: " ")
-
                 createBookmarksDirectoryPrompt()
+            }
+            if checkForConfigFile().0 {
+                print("Configuration file found: \(checkForConfigFile().1)")
+            } else {
+                print("Configuration file not detected.")
+                createConfigPrompt()
             }
         }
     }

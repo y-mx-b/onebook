@@ -17,6 +17,10 @@ struct Config: Decodable {
 }
 
 func createConfig() {
+    let configPath = "\(NSHomeDirectory())/.config/onebook/onebook.toml"
+    let fileCreater = FileManager.default
+    let configContent = returnDefaultConfig()
+    fileCreater.createFile(atPath: configPath, contents: configContent.data(using: .utf8), attributes: nil)
 }
 
 func createConfigPrompt() {
@@ -24,24 +28,31 @@ func createConfigPrompt() {
     print("Y/N?", terminator: " ")
     let input = readLine()
     switch input!.uppercased() {
-    case "Y":
+    case "Y", "YES":
         createConfig()
-        print("Yes.")
-    case "N":
-        print("No.")
+    case "N", "NO":
+        print("Aborting.")
     default:
         print("ERROR: INVALID INPUT")
         createConfigPrompt()
     }
 }
 
-func readFromConfig(_ configData: String?) {
+func checkForConfigFile() -> (Bool, String) {
+    let configPath = "\(NSHomeDirectory())/.config/onebook/onebook.toml"
+    let fileChecker = FileManager.default
+    return (fileChecker.fileExists(atPath: configPath), configPath)
+}
+
+func readFromConfig(_ configData: String?) -> Config? {
     let decoder = TOMLDecoder()
     do {
         let data = try decoder.decode(Config.self, from: configData ?? "")
+        return data
     } catch {
-        print("ERROR: NO CONFIGURATION FILE")
-        createConfigPrompt()
+        print("Configuration file not detected.")
+        print("Try running `onebook init`")
+        return nil
     }
 }
 
