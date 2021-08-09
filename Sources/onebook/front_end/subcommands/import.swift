@@ -1,11 +1,10 @@
+import Foundation
 import ArgumentParser
 
 extension Onebook {
     struct Import: ParsableCommand {
         static var configuration = CommandConfiguration(abstract: "Import bookmarks from a browser.")
-
         @OptionGroup var options: Onebook.Options
-
         @Argument(
             help: ArgumentHelp(
                 "The browser to import bookmarks from.",
@@ -14,7 +13,17 @@ extension Onebook {
             var browser: String
 
         mutating func run() {
-            let bookmarkData: String? = getBookmarkData(from: browser)
+            func importBookmarkData(from browser: String) {
+                switch browser {
+                case "chromium":
+                    let chromiumBookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
+                    let bookmarkData = parseChromiumBookmarks(getChromiumBookmarks(from: chromiumBookmarksPath))
+                    storeChromiumBookmarksData(bookmarkData, storeAt: chromiumBookmarksPath)
+                default:
+                    print("Invalid browser")
+                }
+            }
+            importBookmarkData(from: browser)
         }
     }
 }

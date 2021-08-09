@@ -15,7 +15,8 @@ import Foundation
 //     - GUID: <guid>
 //     - ID: <id>
 
-func storeBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
+func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
     func createFolders() {
     }
+    print(bookmarksData.roots)
 }
