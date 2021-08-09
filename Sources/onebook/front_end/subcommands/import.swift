@@ -13,16 +13,6 @@ extension Onebook {
             var browser: String
 
         mutating func run() {
-            func importBookmarkData(from browser: String) {
-                switch browser {
-                case "chromium":
-                    let chromiumBookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
-                    let bookmarkData = parseChromiumBookmarks(getChromiumBookmarks(from: chromiumBookmarksPath))
-                    storeChromiumBookmarksData(bookmarkData, storeAt: chromiumBookmarksPath)
-                default:
-                    print("Invalid browser")
-                }
-            }
             importBookmarkData(from: browser)
         }
     }

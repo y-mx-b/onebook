@@ -17,6 +17,36 @@ import Foundation
 
 func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
     func createFolders() {
+        let folderCreator = FileManager.default
+        let bookmarksPath = "\(NSHomeDirectory())/.bookmarks/"
+        let favoritesPath = "\(bookmarksPath)Favorites"
+        let syncedPath = "\(bookmarksPath)Synced"
+        let otherArray = bookmarksData.roots.other.children
+
+        var folderArray = [favoritesPath, syncedPath]
+
+        for folder in otherArray {
+            folderArray.append("\(bookmarksPath)\(folder.name)")
+        }
+        for folder in folderArray {
+            try! folderCreator.createDirectory(atPath: folder, withIntermediateDirectories: false)
+        }
     }
-    print(bookmarksData.roots.bookmark_bar)
+    func createFiles() {
+        let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
+        for bookmark in bookmarkBarArray {
+            print(bookmark.name)
+        }
+        let syncedArray = bookmarksData.roots.synced.children
+        for bookmark in syncedArray {
+            print(bookmark.name)
+        }
+        let otherArray = bookmarksData.roots.other.children
+        for folder in otherArray {
+            for bookmark in folder.children {
+                print(bookmark.name)
+            }
+        }
+    }
+    createFolders()
 }

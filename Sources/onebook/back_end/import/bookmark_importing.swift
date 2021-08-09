@@ -1,7 +1,6 @@
 import Foundation
 
 func importBookmarkData(from browser: String) {
-    print(browser.uppercased())
     switch browser.uppercased() {
     case "CHROMIUM":
         let bookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks") as URL
