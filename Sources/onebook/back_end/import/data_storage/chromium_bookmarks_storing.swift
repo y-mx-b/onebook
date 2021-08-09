@@ -18,5 +18,5 @@ import Foundation
 func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
     func createFolders() {
     }
-    print(bookmarksData.roots)
+    print(bookmarksData.roots.bookmark_bar)
 }

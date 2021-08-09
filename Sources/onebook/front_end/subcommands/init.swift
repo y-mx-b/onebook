@@ -38,6 +38,7 @@ extension Onebook {
             let dir = FileManager.default
             let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
             var objCTrue: ObjCBool = true
+
             if dir.fileExists(atPath: bookmarksPath, isDirectory: &objCTrue) {
                 print("Bookmarks directory found: \(bookmarksPath)")
             } else {
@@ -46,6 +47,7 @@ extension Onebook {
                 print("Y/N?:", terminator: " ")
                 createBookmarksDirectoryPrompt()
             }
+
             if checkForConfigFile().0 {
                 print("Configuration file found: \(checkForConfigFile().1)")
             } else {
