@@ -1,15 +1,15 @@
 import Foundation
 
 // TODO implement chromium bookmark data storage
-// 1. Parse bookmark data (implemented)
-// 2. Iterate through folders and create them
+// 1. DONE Parse bookmark data (implemented)
+// 2. DONE Iterate through folders and create them
 //     - Bookmarks Bar --> Favorites
 //     - Other
 //         - Iterate through children array (folder names)
 //     - Mobile (Synced)
-// 3. Iterate through children items in each folder
-// 4. Create each file (bookmark name)
-// 5. Store data in TOML (simple key: value pairs)
+// 3. TODO Iterate through children items in each folder
+// 4. TODO Create each file (bookmark name)
+// 5. TODO Store data in TOML (simple key: value pairs)
 //     - URL: <url>
 //     - DATE: <date>
 //     - GUID: <guid>
@@ -29,7 +29,11 @@ func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt book
             folderArray.append("\(bookmarksPath)\(folder.name)")
         }
         for folder in folderArray {
-            try! folderCreator.createDirectory(atPath: folder, withIntermediateDirectories: false)
+            do {
+                try folderCreator.createDirectory(atPath: folder, withIntermediateDirectories: false)
+            } catch {
+                print("Folder \(folder) already exists. Skipping step.")
+            }
         }
     }
     func createFiles() {
@@ -49,4 +53,5 @@ func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt book
         }
     }
     createFolders()
+    createFiles()
 }
