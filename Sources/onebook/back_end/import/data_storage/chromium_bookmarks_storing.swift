@@ -32,25 +32,37 @@ func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt book
             do {
                 try folderCreator.createDirectory(atPath: folder, withIntermediateDirectories: false)
             } catch {
-                print("Folder \(folder) already exists. Skipping step.")
+                // print("Folder \(folder) already exists. Skipping step.")
             }
         }
     }
     func createFiles() {
+        let fileCreator = FileManager.default
+        let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
+        let favoritesPath = "\(bookmarksPath)/Favorites"
+        let syncedPath = "\(bookmarksPath)/Synced"
+
         let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
+
         for bookmark in bookmarkBarArray {
-            print(bookmark.name)
+            print("\(favoritesPath)/\(bookmark.name)")
+            print(fileCreator.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: nil, attributes: nil))
+            // print(bookmark.name)
         }
-        let syncedArray = bookmarksData.roots.synced.children
-        for bookmark in syncedArray {
-            print(bookmark.name)
-        }
-        let otherArray = bookmarksData.roots.other.children
-        for folder in otherArray {
-            for bookmark in folder.children {
-                print(bookmark.name)
-            }
-        }
+
+        // let syncedArray = bookmarksData.roots.synced.children
+
+        // for bookmark in syncedArray {
+        //     print(bookmark.name)
+        // }
+
+        // let otherArray = bookmarksData.roots.other.children
+
+        // for folder in otherArray {
+        //     for bookmark in folder.children {
+        //         print(bookmark.name)
+        //     }
+        // }
     }
     createFolders()
     createFiles()
