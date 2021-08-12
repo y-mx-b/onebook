@@ -45,24 +45,22 @@ func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt book
         let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
 
         for bookmark in bookmarkBarArray {
-            print("\(favoritesPath)/\(bookmark.name)")
-            print(fileCreator.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: nil, attributes: nil))
-            // print(bookmark.name)
+            fileCreator.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: nil, attributes: nil)
         }
 
-        // let syncedArray = bookmarksData.roots.synced.children
+        let syncedArray = bookmarksData.roots.synced.children
 
-        // for bookmark in syncedArray {
-        //     print(bookmark.name)
-        // }
+        for bookmark in syncedArray {
+            fileCreator.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: nil, attributes: nil)
+        }
 
-        // let otherArray = bookmarksData.roots.other.children
+        let otherArray = bookmarksData.roots.other.children
 
-        // for folder in otherArray {
-        //     for bookmark in folder.children {
-        //         print(bookmark.name)
-        //     }
-        // }
+        for folder in otherArray {
+            for bookmark in folder.children {
+                fileCreator.createFile(atPath: "\(bookmarksPath)/\(folder.name)/\(bookmark.name)", contents: nil, attributes: nil)
+            }
+        }
     }
     createFolders()
     createFiles()
