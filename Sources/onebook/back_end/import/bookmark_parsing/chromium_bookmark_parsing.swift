@@ -1,5 +1,4 @@
 import Foundation
-import Foundation
 
 func parseChromiumBookmarks(_ chromiumBookmarkData: String?) -> ChromiumBookmarks {
     if chromiumBookmarkData == nil {
