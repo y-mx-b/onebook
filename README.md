@@ -53,14 +53,18 @@ SUBCOMMANDS:
 
 ### Functionality
 
-- [X] Implement Chromium bookmark parsing
-- [ ] Implementing Chromium bookmark data storage
 - [ ] Implmenting config file
 
 ### Browser support
 
 - [ ] Chromium
+  - [X] Implement Chromium bookmark parsing
+  - [X] Implementing Chromium bookmark data storage
 - [ ] Chrome
 - [ ] Safari
+  - [X] Implement Safari bookmark parsing
+  - [X] Implement Safari bookmark data storage
 - [ ] Firefox
+  - [ ] Implement Firefox bookmark parsing
+  - [ ] Implement Firefox bookmark data storage
 - [ ] Qutebrowser
