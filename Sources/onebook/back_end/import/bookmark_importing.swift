@@ -9,9 +9,9 @@ func importBookmarkData(from browser: String) {
     case "CHROME":
         print("Chrome")
     case "SAFARI":
-        print("Safari")
         let bookmarksPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist") as URL
         let bookmarksData = parseSafariBookmarks(getSafariBookmarks(from: bookmarksPath))
+        storeSafariBookmarks(bookmarksData, storeAt: bookmarksPath)
     case "FIREFOX":
         print("Firefox")
     case "QUTEBROWSER":

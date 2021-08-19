@@ -6,7 +6,6 @@ Things to Ignore:
  - Item 1 = Bookmarks Bar
  - Item 3 = come.apple.ReadingList
 */
-
 /*
 Types of Entries (From Item 4 on)
  - Lone bookmarks (no Title, no Children, has URIDictionary)
@@ -16,28 +15,24 @@ Types of Entries (From Item 4 on)
  - Nested Folders (has Title, Children have Children)
     - WebBookmarkType = "WebBookmarkTypeList"
 */
-struct URIDictionary: Codable {
+struct SafariURIDictionary: Codable {
     let title: String
 }
-struct Children: Codable {
+struct SafariChildren: Codable {
     let WebBookmarkUUID: String
+    let Title: String?
+    let Children: [SafariChildren]?
     let URLString: String?
     let WebBookmarkType: String
-    let URIDictionary: URIDictionary?
-}
-struct Folder: Codable {
-    let WebBookmarkUUID: String
-    let Children: [Children]?
-    let WebBookmarkType: String
-    let Title: String?
+    let URIDictionary: SafariURIDictionary?
 }
 struct SafariBookmarks: Codable {
     let WebBookmarkUUID: String
     // let WebBookmarkFileVersion: Int
-    let Children: [Folder]?
+    let Children: [SafariChildren]?
     let Title: String
     // only exists for lone bookmarks
-    let URIDictionary: URIDictionary?
+    let URIDictionary: SafariURIDictionary?
     let URLString: String?
     let WebBookmarkType: String
 }
