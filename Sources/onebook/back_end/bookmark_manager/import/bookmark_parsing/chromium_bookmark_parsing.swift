@@ -52,29 +52,29 @@ extension BookmarkManager {
 
                     for bookmark in bookmarkBarArray {
                         let bookmarkData = Data("""
-                        url: \(bookmark.url)
-                        data_added: \(bookmark.date_added)
-                        guid: \(bookmark.guid)
+                        url = \(bookmark.url)
+                        data_added = \(bookmark.date_added)
+                        guid = \(bookmark.guid)
                         """.utf8)
                         fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
                     }
 
                     for bookmark in syncedArray {
                         let bookmarkData = Data("""
-                        url: \(bookmark.url)
-                        data_added: \(bookmark.date_added)
-                        guid: \(bookmark.guid)
+                        url =  \(bookmark.url)
+                        data_added = \(bookmark.date_added)
+                        guid =  \(bookmark.guid)
                         """.utf8)
                         fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
                     }
 
                     for folder in otherArray {
                         for bookmark in folder.children {
-                        let bookmarkData = Data("""
-                        url: \(bookmark.url)
-                        data_added: \(bookmark.date_added)
-                        guid: \(bookmark.guid)
-                        """.utf8)
+                            let bookmarkData = Data("""
+                            url = \(bookmark.url)
+                            data_added = \(bookmark.date_added)
+                            guid = \(bookmark.guid)
+                            """.utf8)
                             fileManager.createFile(atPath: "\(bookmarksPath)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
                         }
                     }

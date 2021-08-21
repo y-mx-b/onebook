@@ -14,7 +14,7 @@ extension BookmarkManager {
     }
 
     func importBookmarkData() {
-        let bookmarksDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
+        // let bookmarksDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
         switch browserName!.uppercased() {
         case "CHROMIUM":
             let bookmarkManager = ChromiumBookmarkManager()
