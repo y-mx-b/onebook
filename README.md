@@ -17,9 +17,9 @@ stored as files (same as [pass](https://www.passwordstore.org)). This allows
 immense freedom, as anyone can create scripts to work with bookmarks in any
 language that can manipulate the file system.
 
-### Downloading
+## Downloading
 
-#### [Mint](https://github.com/yonaskolb/Mint)
+### [Mint](https://github.com/yonaskolb/Mint)
 
 Download mint and run the following command.
 
@@ -27,7 +27,7 @@ Download mint and run the following command.
 mint install luardemin/onebook
 ```
 
-#### Building from Source
+### Building from Source
 
 NOTE: Requires [git](https://github.com/git/git) and the [Swift Package Manager](https://swift.org/package-manager/).
 
@@ -40,7 +40,7 @@ git clone https://github.com/luardemin/onebook.git
 Then do `cd onebook` to enter the directory. You can then build with
 `swift build` or run with `swift run onebook <subcommand>`.
 
-### Basic Usage
+## Basic Usage
 
 Make sure `onebook` is on your
 [path](https://www.putorius.net/set-path-variable-linux.html), then run:
@@ -78,6 +78,7 @@ SUBCOMMANDS:
 - [ ] [Importing bookmarks](####importing)
 - [ ] Exporting bookmarks
 - [ ] Syncing bookmarks
+- [ ] Configuration/Programmability (perhaps use JavaScript for configuration?)
 
 #### Importing
 
@@ -103,3 +104,11 @@ SUBCOMMANDS:
   - [ ] Set browsers to sync
 
 ### Browser support
+
+| Browser     | Import From | Export To | Sync |
+|-------------|:-----------:|:---------:|:----:|
+| Chromium    |      O      |     X     |   X  |
+| Chrome      |      X      |     X     |   X  |
+| Safari      |      O      |     X     |   X  |
+| Firefox     |      X      |     X     |   X  |
+| Qutebrowser |      X      |     X     |   X  |
