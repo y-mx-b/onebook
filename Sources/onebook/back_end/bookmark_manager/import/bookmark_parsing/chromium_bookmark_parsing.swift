@@ -18,7 +18,7 @@ extension BookmarkManager {
                 let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
                 return data
             }
-            public func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: URL) {
+            public func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
                 let fileManager = FileManager.default
 
                 let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
@@ -26,7 +26,7 @@ extension BookmarkManager {
                 let otherArray = bookmarksData.roots.other.children
 
                 func createFolders() {
-                    let favoritesPath = "\(storageDirectory)Favorites"
+                    let favoritesPath = "\(storageDirectory)/Favorites"
                     let syncedPath = "\(storageDirectory)Synced"
                     let otherArray = bookmarksData.roots.other.children
 
@@ -44,42 +44,42 @@ extension BookmarkManager {
                     }
                 }
 
-                func createFiles() {
-                    let storageDirectory = "\(NSHomeDirectory())/.bookmarks"
-                    let favoritesPath = "\(storageDirectory)/Favorites"
-                    let syncedPath = "\(storageDirectory)/Synced"
+                // func createFiles() {
+                //     let storageDirectory = "\(NSHomeDirectory())/.bookmarks"
+                //     let favoritesPath = "\(storageDirectory)/Favorites"
+                //     let syncedPath = "\(storageDirectory)/Synced"
 
-                    for bookmark in bookmarkBarArray {
-                        let bookmarkData = Data("""
-                        url = \(bookmark.url)
-                        data_added = \(bookmark.date_added)
-                        guid = \(bookmark.guid)
-                        """.utf8)
-                        fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                    }
+                //     for bookmark in bookmarkBarArray {
+                //         let bookmarkData = Data("""
+                //         url = \(bookmark.url)
+                //         data_added = \(bookmark.date_added)
+                //         guid = \(bookmark.guid)
+                //         """.utf8)
+                //         fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                //     }
 
-                    for bookmark in syncedArray {
-                        let bookmarkData = Data("""
-                        url =  \(bookmark.url)
-                        data_added = \(bookmark.date_added)
-                        guid =  \(bookmark.guid)
-                        """.utf8)
-                        fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                    }
+                //     for bookmark in syncedArray {
+                //         let bookmarkData = Data("""
+                //         url =  \(bookmark.url)
+                //         data_added = \(bookmark.date_added)
+                //         guid =  \(bookmark.guid)
+                //         """.utf8)
+                //         fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                //     }
 
-                    for folder in otherArray {
-                        for bookmark in folder.children {
-                            let bookmarkData = Data("""
-                            url = \(bookmark.url)
-                            data_added = \(bookmark.date_added)
-                            guid = \(bookmark.guid)
-                            """.utf8)
-                            fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                        }
-                    }
-                }
+                //     for folder in otherArray {
+                //         for bookmark in folder.children {
+                //             let bookmarkData = Data("""
+                //             url = \(bookmark.url)
+                //             data_added = \(bookmark.date_added)
+                //             guid = \(bookmark.guid)
+                //             """.utf8)
+                //             fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                //         }
+                //     }
+                // }
                 createFolders()
-                createFiles()
+                // createFiles()
             }
     }
 }
