@@ -78,7 +78,7 @@ SUBCOMMANDS:
 - [ ] [Importing bookmarks](#importing) (in-progress)
 - [ ] Exporting bookmarks
 - [ ] Syncing bookmarks
-- [ ] [Configuration](#configuraiton)/Programmability (perhaps use JavaScript
+- [ ] [Configuration](#configuration)/Programmability (perhaps use JavaScript
 for configuration?)
 
 #### Importing
