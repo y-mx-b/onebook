@@ -1,8 +1,8 @@
 import Foundation
 
 extension BookmarkManager {
-        struct ChromiumBookmarkManager {
-            func getChromiumBookmarks(from bookmarksFilePath: URL) -> String? {
+        public struct ChromiumBookmarkManager {
+            public func getChromiumBookmarks(from bookmarksFilePath: URL) -> String? {
                 do {
                     let contents = try String(contentsOf: bookmarksFilePath, encoding: .utf8)
                     return contents
@@ -10,15 +10,15 @@ extension BookmarkManager {
                     return nil
                 }
             }
-            func parseChromiumBookmarks(_ chromiumBookmarks: String?) -> (Bool, ChromiumBookmarks?) {
-                if chromiumBookmarks == nil { return(false, nil) }
+            public func parseChromiumBookmarks(_ chromiumBookmarks: String?) -> ChromiumBookmarks? {
+                if chromiumBookmarks == nil { return nil }
 
                 let bookmarkData = chromiumBookmarks!.data(using: .utf8)
                 let decoder = JSONDecoder()
                 let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
-                return (true, data)
+                return data
             }
-            func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt bookmarksPath: URL) {
+            public func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: URL) {
                 let fileManager = FileManager.default
 
                 let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
@@ -26,15 +26,14 @@ extension BookmarkManager {
                 let otherArray = bookmarksData.roots.other.children
 
                 func createFolders() {
-                    let bookmarksPath = "\(NSHomeDirectory())/.bookmarks/"
-                    let favoritesPath = "\(bookmarksPath)Favorites"
-                    let syncedPath = "\(bookmarksPath)Synced"
+                    let favoritesPath = "\(storageDirectory)Favorites"
+                    let syncedPath = "\(storageDirectory)Synced"
                     let otherArray = bookmarksData.roots.other.children
 
                     var folderArray = [favoritesPath, syncedPath]
 
                     for folder in otherArray {
-                        folderArray.append("\(bookmarksPath)\(folder.name)")
+                        folderArray.append("\(storageDirectory)\(folder.name)")
                     }
                     for folder in folderArray {
                         do {
@@ -46,9 +45,9 @@ extension BookmarkManager {
                 }
 
                 func createFiles() {
-                    let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
-                    let favoritesPath = "\(bookmarksPath)/Favorites"
-                    let syncedPath = "\(bookmarksPath)/Synced"
+                    let storageDirectory = "\(NSHomeDirectory())/.bookmarks"
+                    let favoritesPath = "\(storageDirectory)/Favorites"
+                    let syncedPath = "\(storageDirectory)/Synced"
 
                     for bookmark in bookmarkBarArray {
                         let bookmarkData = Data("""
@@ -75,7 +74,7 @@ extension BookmarkManager {
                             data_added = \(bookmark.date_added)
                             guid = \(bookmark.guid)
                             """.utf8)
-                            fileManager.createFile(atPath: "\(bookmarksPath)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                            fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
                         }
                     }
                 }

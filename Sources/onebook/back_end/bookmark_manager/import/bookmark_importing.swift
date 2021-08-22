@@ -8,31 +8,73 @@ fileprivate let bookmarkFileArray: [String: String] = [
     "QUTEBROWSER": ""
 ]
 
+fileprivate enum BrowserEnum: String {
+    case chromium = "CHROMIUM"
+    case chrome = "CHROME"
+    case safari = "SAFARI"
+    case firefox = "FIREFOX"
+    case qutebrowser = "QUTEBROWSER"
+    case none
+}
+
 extension BookmarkManager {
-    mutating func setDefaultBookmarksPath() {
-        bookmarksFilePath = bookmarkFileArray[browserName!]
+    public mutating func setDefaultBookmarksPath() {
+        bookmarksFilePath = bookmarkFileArray[browserName!.uppercased()]
     }
 
-    func importBookmarkData() {
-        // let bookmarksDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
-        switch browserName!.uppercased() {
-        case "CHROMIUM":
+    public func getBookmarks() -> ChromiumBookmarks? {
+        let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
+
+        switch browser {
+        case .chromium:
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
-            let bookmarksData = bookmarkManager.parseChromiumBookmarks(bookmarkManager.getChromiumBookmarks(from: bookmarksURL))
+            let bookmarksDump = bookmarkManager.getChromiumBookmarks(from: bookmarksURL)
+            if let bookmarks = bookmarkManager.parseChromiumBookmarks(bookmarksDump) {
+                return bookmarks
+            } else {
+                return nil
+            }
             // storeChromiumBookmarksData(bookmarksData.1!, storeAt: bookmarksDirectoryURL)
-        case "CHROME":
+        case .chrome:
             print(browserName)
-        case "SAFARI":
+            return nil
+        case .safari:
             let bookmarksPath = URL(fileURLWithPath: "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist")
             let bookmarksData = parseSafariBookmarks(getSafariBookmarks(from: bookmarksPath))
+            // let bookmarksDump = getSafariBookmarks(from: bookmarksPath)
             storeSafariBookmarks(bookmarksData, storeAt: bookmarksPath)
-        case "FIREFOX":
+            return nil
+        case .firefox:
             print(browserName)
-        case "QUTEBROWSER":
+            return nil
+        case .qutebrowser:
             print(browserName)
+            return nil
         default:
             print(browserName)
+            return nil
+        }
+    }
+
+    public func storeBookmarks(_ bookmarks: ChromiumBookmarks) {
+        let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
+
+        switch browser {
+        case .chromium:
+        let bookmarkManager = ChromiumBookmarkManager()
+        let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
+        bookmarkManager.storeChromiumBookmarksData(bookmarks, storeAt: storageDirectoryURL)
+        case .chrome:
+        print(browserName)
+        case .safari:
+        print(browserName)
+        case .firefox:
+        print(browserName)
+        case .qutebrowser:
+        print(browserName)
+        default:
+        print(browserName)
         }
     }
 }

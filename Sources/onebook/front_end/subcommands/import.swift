@@ -16,7 +16,8 @@ extension Onebook {
             var bookmarkManager = BookmarkManager(browserName: browser, bookmarksFilePath: nil)
             // replace bookmarksFilePath with variable once config is implemented properly
             if bookmarkManager.bookmarksFilePath == nil { bookmarkManager.setDefaultBookmarksPath() }
-            bookmarkManager.importBookmarkData()
+            let bookmarks = bookmarkManager.getBookmarks()
+            bookmarkManager.storeBookmarks(bookmarks!)
         }
     }
 }
