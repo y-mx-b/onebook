@@ -18,7 +18,7 @@ extension BookmarkManager {
                 let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
                 return data
             }
-            public func storeChromiumBookmarksData(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
+            public func storeChromiumBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
                 let fileManager = FileManager.default
 
                 let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children

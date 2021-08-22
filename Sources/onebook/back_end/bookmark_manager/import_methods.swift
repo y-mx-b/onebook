@@ -36,23 +36,23 @@ extension BookmarkManager {
                 return nil
             }
             // storeChromiumBookmarksData(bookmarksData.1!, storeAt: bookmarksDirectoryURL)
-        case .chrome:
-            print(browserName)
-            return nil
+        // case .chrome:
+        //     print(browserName)
+        //     return nil
         case .safari:
             let bookmarksPath = URL(fileURLWithPath: "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist")
             let bookmarksData = parseSafariBookmarks(getSafariBookmarks(from: bookmarksPath))
             // let bookmarksDump = getSafariBookmarks(from: bookmarksPath)
             storeSafariBookmarks(bookmarksData, storeAt: bookmarksPath)
             return nil
-        case .firefox:
-            print(browserName)
-            return nil
-        case .qutebrowser:
-            print(browserName)
-            return nil
+        // case .firefox:
+        //     print(browserName)
+        //     return nil
+        // case .qutebrowser:
+        //     print(browserName)
+        //     return nil
         default:
-            print(browserName)
+            // print(browserName)
             return nil
         }
     }
@@ -64,17 +64,17 @@ extension BookmarkManager {
         switch browser {
         case .chromium:
         let bookmarkManager = ChromiumBookmarkManager()
-        bookmarkManager.storeChromiumBookmarksData(bookmarks, storeAt: storageDirectory)
-        case .chrome:
-        print(browserName)
-        case .safari:
-        print(browserName)
-        case .firefox:
-        print(browserName)
-        case .qutebrowser:
-        print(browserName)
+        bookmarkManager.storeChromiumBookmarks(bookmarks, storeAt: storageDirectory)
+        // case .chrome:
+        // print(browserName)
+        // case .safari:
+        // print(browserName)
+        // case .firefox:
+        // print(browserName)
+        // case .qutebrowser:
+        // print(browserName)
         default:
-        print(browserName)
+        print(browserName!)
         }
     }
 }
