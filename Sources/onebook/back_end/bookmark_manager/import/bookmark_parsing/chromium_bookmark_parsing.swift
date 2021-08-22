@@ -25,9 +25,10 @@ extension BookmarkManager {
                 let syncedArray = bookmarksData.roots.synced.children
                 let otherArray = bookmarksData.roots.other.children
 
+                let favoritesPath = "\(storageDirectory)/Favorites"
+                let syncedPath = "\(storageDirectory)/Synced"
+
                 func createFolders() {
-                    let favoritesPath = "\(storageDirectory)/Favorites"
-                    let syncedPath = "\(storageDirectory)Synced"
                     let otherArray = bookmarksData.roots.other.children
 
                     var folderArray = [favoritesPath, syncedPath]
@@ -44,42 +45,38 @@ extension BookmarkManager {
                     }
                 }
 
-                // func createFiles() {
-                //     let storageDirectory = "\(NSHomeDirectory())/.bookmarks"
-                //     let favoritesPath = "\(storageDirectory)/Favorites"
-                //     let syncedPath = "\(storageDirectory)/Synced"
+                func createFiles() {
+                    for bookmark in bookmarkBarArray {
+                        let bookmarkData = Data("""
+                        url = \(bookmark.url)
+                        data_added = \(bookmark.date_added)
+                        guid = \(bookmark.guid)
+                        """.utf8)
+                        fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                    }
 
-                //     for bookmark in bookmarkBarArray {
-                //         let bookmarkData = Data("""
-                //         url = \(bookmark.url)
-                //         data_added = \(bookmark.date_added)
-                //         guid = \(bookmark.guid)
-                //         """.utf8)
-                //         fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                //     }
+                    for bookmark in syncedArray {
+                        let bookmarkData = Data("""
+                        url =  \(bookmark.url)
+                        data_added = \(bookmark.date_added)
+                        guid =  \(bookmark.guid)
+                        """.utf8)
+                        fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                    }
 
-                //     for bookmark in syncedArray {
-                //         let bookmarkData = Data("""
-                //         url =  \(bookmark.url)
-                //         data_added = \(bookmark.date_added)
-                //         guid =  \(bookmark.guid)
-                //         """.utf8)
-                //         fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                //     }
-
-                //     for folder in otherArray {
-                //         for bookmark in folder.children {
-                //             let bookmarkData = Data("""
-                //             url = \(bookmark.url)
-                //             data_added = \(bookmark.date_added)
-                //             guid = \(bookmark.guid)
-                //             """.utf8)
-                //             fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                //         }
-                //     }
-                // }
+                    for folder in otherArray {
+                        for bookmark in folder.children {
+                            let bookmarkData = Data("""
+                            url = \(bookmark.url)
+                            data_added = \(bookmark.date_added)
+                            guid = \(bookmark.guid)
+                            """.utf8)
+                            fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
+                        }
+                    }
+                }
                 createFolders()
-                // createFiles()
+                createFiles()
             }
     }
 }
