@@ -59,7 +59,7 @@ extension BookmarkManager {
 
     public func storeBookmarks(_ bookmarks: ChromiumBookmarks) {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
-        let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
+        // let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
 
         switch browser {
         case .chromium:
