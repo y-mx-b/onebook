@@ -87,6 +87,7 @@ for configuration?)
   - [X] Implement Chromium bookmark parsing
   - [X] Implementing Chromium bookmark data storage
 - [ ] Chrome
+  - Literally the same as Chromium, I just need to change file/directory paths
 - [X] Safari
   - [X] Implement Safari bookmark parsing
   - [X] Implement Safari bookmark data storage
