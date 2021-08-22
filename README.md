@@ -75,10 +75,11 @@ SUBCOMMANDS:
   - [ ] Adding bookmarks
   - [ ] Removing bookmarks
   - [ ] Clearing all bookmarks
-- [ ] [Importing bookmarks](####importing)
+- [ ] [Importing bookmarks](#importing) (in-progress)
 - [ ] Exporting bookmarks
 - [ ] Syncing bookmarks
-- [ ] Configuration/Programmability (perhaps use JavaScript for configuration?)
+- [ ] [Configuration](#configuraiton)/Programmability (perhaps use JavaScript
+for configuration?)
 
 #### Importing
 
@@ -111,4 +112,3 @@ SUBCOMMANDS:
 | Chrome      |      X      |     X     |   X  |
 | Safari      |      O      |     X     |   X  |
 | Firefox     |      X      |     X     |   X  |
-| Qutebrowser |      X      |     X     |   X  |
