@@ -23,7 +23,7 @@ language that can manipulate the file system.
 
 Download mint and run the following command.
 
-```sh
+```
 mint install luardemin/onebook
 ```
 
@@ -33,7 +33,7 @@ NOTE: Requires [git](https://github.com/git/git) and the [Swift Package Manager]
 
 First, download the GitHub repository using the following command:
 
-```sh
+```
 git clone https://github.com/luardemin/onebook.git
 ```
 
@@ -45,13 +45,13 @@ Then do `cd onebook` to enter the directory. You can then build with
 Make sure `onebook` is on your
 [path](https://www.putorius.net/set-path-variable-linux.html), then run:
 
-```sh
+```
 onebook init
 ```
 
 To display the help message:
 
-```sh
+```
 $ onebook help
 OVERVIEW: A universal bookmark management utility.
 
