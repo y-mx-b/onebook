@@ -23,9 +23,9 @@ extension BookmarkManager {
         }
         public func storeBookmarks(_ bookmarksData: SafariBookmarks, storeAt storageDirectory: String) {
             let fileManager = FileManager.default
-            let bookmarksFolderPath = URL(fileURLWithPath: "\(NSHomeDirectory())/.bookmarks/", isDirectory: true)
+            let storageDirectoryURL = URL(fileURLWithPath: "\(NSHomeDirectory())/.bookmarks/", isDirectory: true)
 
-            let bookmarks = bookmarksData.Children![4...]
+            let bookmarks = bookmarksData.Children![1...]
 
             var foldersArray: [SafariChildren] = []
             var nestedFoldersArray: [SafariChildren] = []
@@ -47,7 +47,7 @@ extension BookmarkManager {
             }
 
             for item in foldersArray {
-                let folderPath = bookmarksFolderPath.appendingPathComponent(item.Title!, isDirectory: true)
+                let folderPath = storageDirectoryURL.appendingPathComponent(item.Title!, isDirectory: true)
                 do {
                     try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: false, attributes: nil)
                 } catch {
@@ -55,20 +55,22 @@ extension BookmarkManager {
             }
 
             for item in foldersArray {
-                for child in item.Children! {
-                    switch child.WebBookmarkType {
-                    case "WebBookmarkTypeList":
-                        let folderPath = bookmarksFolderPath.appendingPathComponent("\(item.Title!)/\(child.Title!)", isDirectory: true)
-                        nestedFoldersArray.append(child)
-                        do {
-                            try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: false, attributes: nil)
-                        } catch {
+                if item.Children != nil {
+                    for child in item.Children! {
+                        switch child.WebBookmarkType {
+                        case "WebBookmarkTypeList":
+                            let folderPath = storageDirectoryURL.appendingPathComponent("\(item.Title!)/\(child.Title!)", isDirectory: true)
+                            nestedFoldersArray.append(child)
+                            do {
+                                try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: false, attributes: nil)
+                            } catch {
+                            }
+                        case "WebBookmarkTypeLeaf":
+                            let bookmarkPath = "\(NSHomeDirectory())/.bookmarks/\(item.Title!)/\(child.URIDictionary!.title)"
+                                fileManager.createFile(atPath: bookmarkPath, contents: nil, attributes: nil)
+                        default:
+                            print("failure")
                         }
-                    case "WebBookmarkTypeLeaf":
-                        let bookmarkPath = "\(NSHomeDirectory())/.bookmarks/\(item.Title!)/\(child.URIDictionary!.title)"
-                            fileManager.createFile(atPath: bookmarkPath, contents: nil, attributes: nil)
-                    default:
-                        print("failure")
                     }
                 }
             }
