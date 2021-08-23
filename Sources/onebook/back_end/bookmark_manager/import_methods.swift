@@ -55,13 +55,13 @@ extension BookmarkManager {
 
         switch browser {
         case .chromium, .chrome:
-        let bookmarkManager = ChromiumBookmarkManager()
-        let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
-        bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
+            let bookmarkManager = ChromiumBookmarkManager()
+            let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
+            bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
         case .safari:
-        let bookmarkManager = SafariBookmarkManager()
-        let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
-        bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
+            let bookmarkManager = SafariBookmarkManager()
+            let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
+            bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
         // case .firefox:
         // print(browserName)
         // case .qutebrowser:
