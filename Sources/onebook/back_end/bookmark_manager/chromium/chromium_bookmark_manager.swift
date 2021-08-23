@@ -10,10 +10,10 @@ extension BookmarkManager {
                     return nil
                 }
             }
-            public func parseBookmarks(_ chromiumBookmarks: String?) -> ChromiumBookmarks? {
-                if chromiumBookmarks == nil { return nil }
+            public func parseBookmarks(_ bookmarksDump: String?) -> ChromiumBookmarks? {
+                if bookmarksDump == nil { return nil }
 
-                let bookmarkData = chromiumBookmarks!.data(using: .utf8)
+                let bookmarkData = bookmarksDump!.data(using: .utf8)
                 let decoder = JSONDecoder()
                 let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
                 return data

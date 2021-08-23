@@ -1,12 +1,14 @@
 import Foundation
 
+#if os(macOS)
 fileprivate let bookmarkFileArray: [String: String] = [
     "CHROMIUM": "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks",
-    "CHROME": "",
+    "CHROME": "\(NSHomeDirectory())/Library/Application Support/Google/Chrome/Default/Bookmarks",
     "SAFARI": "\(NSHomeDirectory())/Library/Application Support/Safari/Bookmarks.plist",
     "FIREFOX": "",
     "QUTEBROWSER": ""
 ]
+#endif
 
 fileprivate enum BrowserEnum: String {
     case chromium = "CHROMIUM"
@@ -26,14 +28,10 @@ extension BookmarkManager {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
 
         switch browser {
-        case .chromium:
+        case .chromium, .chrome:
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
-            // storeChromiumBookmarksData(bookmarksData.1!, storeAt: bookmarksDirectoryURL)
-        // case .chrome:
-        //     print(browserName)
-        //     return nil
         case .safari:
             let bookmarksPath = URL(fileURLWithPath: "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist")
             let bookmarksData = parseSafariBookmarks(getSafariBookmarks(from: bookmarksPath))
@@ -57,12 +55,10 @@ extension BookmarkManager {
         // let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
 
         switch browser {
-        case .chromium:
+        case .chromium, .chrome:
         let bookmarkManager = ChromiumBookmarkManager()
         let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
         bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
-        // case .chrome:
-        // print(browserName)
         // case .safari:
         // print(browserName)
         // case .firefox:
