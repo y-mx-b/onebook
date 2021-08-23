@@ -2,7 +2,7 @@ import Foundation
 
 extension BookmarkManager {
         public struct ChromiumBookmarkManager {
-            public func getChromiumBookmarks(from bookmarksFilePath: URL) -> String? {
+            public func getBookmarks(from bookmarksFilePath: URL) -> String? {
                 do {
                     let contents = try String(contentsOf: bookmarksFilePath, encoding: .utf8)
                     return contents
@@ -10,7 +10,7 @@ extension BookmarkManager {
                     return nil
                 }
             }
-            public func parseChromiumBookmarks(_ chromiumBookmarks: String?) -> ChromiumBookmarks? {
+            public func parseBookmarks(_ chromiumBookmarks: String?) -> ChromiumBookmarks? {
                 if chromiumBookmarks == nil { return nil }
 
                 let bookmarkData = chromiumBookmarks!.data(using: .utf8)
@@ -18,7 +18,7 @@ extension BookmarkManager {
                 let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
                 return data
             }
-            public func storeChromiumBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
+            public func storeBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
                 let fileManager = FileManager.default
 
                 let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
