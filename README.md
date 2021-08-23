@@ -16,6 +16,7 @@ Current state:
     -   [Building From Source](#building-from-source)
 -   [Basic Usage](#basic-usage)
 -   [TODO](#todo)
+    -   [Documentation](#documentation)
     -   [Functionality](#functionality)
         -   [Importing](#importing)
         -   [Configuration](#configuration)
@@ -140,6 +141,12 @@ To display the help message:
       See 'onebook help <subcommand>' for detailed help.
 
 ## TODO
+
+### Documentation
+
+-   [ ] Back-End
+-   [ ] Manpage
+-   [x] Incredibly cryptic help message
 
 ### Functionality
 
