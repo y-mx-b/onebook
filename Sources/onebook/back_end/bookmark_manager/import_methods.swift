@@ -22,19 +22,14 @@ extension BookmarkManager {
         bookmarksFilePath = bookmarkFileArray[browserName!.uppercased()]
     }
 
-    public func getBookmarks() -> ChromiumBookmarks? {
+    public func getBookmarks() -> String? {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
 
         switch browser {
         case .chromium:
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
-            let bookmarksDump = bookmarkManager.getChromiumBookmarks(from: bookmarksURL)
-            if let bookmarks = bookmarkManager.parseChromiumBookmarks(bookmarksDump) {
-                return bookmarks
-            } else {
-                return nil
-            }
+            return bookmarkManager.getBookmarks(from: bookmarksURL)
             // storeChromiumBookmarksData(bookmarksData.1!, storeAt: bookmarksDirectoryURL)
         // case .chrome:
         //     print(browserName)
@@ -57,14 +52,15 @@ extension BookmarkManager {
         }
     }
 
-    public func storeBookmarks(_ bookmarks: ChromiumBookmarks) {
+    public func storeBookmarks(_ bookmarksDump: String?) {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
         // let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
 
         switch browser {
         case .chromium:
         let bookmarkManager = ChromiumBookmarkManager()
-        bookmarkManager.storeChromiumBookmarks(bookmarks, storeAt: storageDirectory)
+        let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
+        bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
         // case .chrome:
         // print(browserName)
         // case .safari:
