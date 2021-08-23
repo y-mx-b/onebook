@@ -185,7 +185,7 @@ To display the help message:
 ### Browser support
 
 | Browser     | Import From | Export To | Sync |
-|-------------|-------------|-----------|------|
+|-------------|:-----------:|:---------:|:----:|
 | Chromium    | O           | X         | X    |
 | Chrome      | O           | X         | X    |
 | Safari      | O           | X         | X    |
