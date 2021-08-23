@@ -4,7 +4,7 @@ import Foundation
 fileprivate let bookmarkFileArray: [String: String] = [
     "CHROMIUM": "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks",
     "CHROME": "\(NSHomeDirectory())/Library/Application Support/Google/Chrome/Default/Bookmarks",
-    "SAFARI": "\(NSHomeDirectory())/Library/Application Support/Safari/Bookmarks.plist",
+    "SAFARI": "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist",
     "FIREFOX": "",
     "QUTEBROWSER": ""
 ]
@@ -24,7 +24,7 @@ extension BookmarkManager {
         bookmarksFilePath = bookmarkFileArray[browserName!.uppercased()]
     }
 
-    public func getBookmarks() -> String? {
+    public func getBookmarks() -> Data? {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
 
         switch browser {
@@ -33,10 +33,9 @@ extension BookmarkManager {
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
         case .safari:
-            let bookmarksPath = URL(fileURLWithPath: "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist")
-            let bookmarksData = parseSafariBookmarks(getSafariBookmarks(from: bookmarksPath))
-            // let bookmarksDump = getSafariBookmarks(from: bookmarksPath)
-            storeSafariBookmarks(bookmarksData, storeAt: bookmarksPath)
+            let bookmarkManager = SafariBookmarkManager()
+            let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
+            return bookmarkManager.getBookmarks(from: bookmarksURL)
             return nil
         // case .firefox:
         //     print(browserName)
@@ -50,7 +49,7 @@ extension BookmarkManager {
         }
     }
 
-    public func storeBookmarks(_ bookmarksDump: String?) {
+    public func storeBookmarks(_ bookmarksDump: Data?) {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
         // let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
 
@@ -59,8 +58,10 @@ extension BookmarkManager {
         let bookmarkManager = ChromiumBookmarkManager()
         let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
         bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
-        // case .safari:
-        // print(browserName)
+        case .safari:
+        let bookmarkManager = SafariBookmarkManager()
+        let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
+        bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
         // case .firefox:
         // print(browserName)
         // case .qutebrowser:

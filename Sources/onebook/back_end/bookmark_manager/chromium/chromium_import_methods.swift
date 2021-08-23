@@ -2,20 +2,19 @@ import Foundation
 
 extension BookmarkManager {
         public struct ChromiumBookmarkManager {
-            public func getBookmarks(from bookmarksFilePath: URL) -> String? {
+            public func getBookmarks(from bookmarksFilePath: URL) -> Data? {
                 do {
-                    let contents = try String(contentsOf: bookmarksFilePath, encoding: .utf8)
+                    let contents = try Data(contentsOf: bookmarksFilePath)
                     return contents
                 } catch {
                     return nil
                 }
             }
-            public func parseBookmarks(_ bookmarksDump: String?) -> ChromiumBookmarks? {
+            public func parseBookmarks(_ bookmarksDump: Data?) -> ChromiumBookmarks? {
                 if bookmarksDump == nil { return nil }
 
-                let bookmarkData = bookmarksDump!.data(using: .utf8)
                 let decoder = JSONDecoder()
-                let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarkData!)
+                let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarksDump!)
                 return data
             }
             public func storeBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {

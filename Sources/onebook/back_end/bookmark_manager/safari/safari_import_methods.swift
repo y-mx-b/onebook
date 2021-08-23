@@ -2,21 +2,21 @@ import Foundation
 
 extension BookmarkManager {
     public struct SafariBookmarkManager {
-        public func getBookmarks(from bookmarksFilePath: URL) -> String? {
+        public func getBookmarks(from bookmarksFilePath: URL) -> Data? {
             do {
-                let contents = try Data(contentsOf: safariBookmarksPath)
+                let contents = try Data(contentsOf: bookmarksFilePath)
                 return contents
             } catch {
                 print(error)
                 return nil
             }
         }
-        public func parseBookmarks(_ bookmarksDump: String?) -> SafariBookmarks? {
-            if safariBookmarkData == nil {
+        public func parseBookmarks(_ bookmarksDump: Data?) -> SafariBookmarks? {
+            if bookmarksDump == nil {
                 print("ERROR: COULD NOT RETRIEVE BOOKMARK DATA")
             }
 
-            let plistData = safariBookmarkData
+            let plistData = bookmarksDump
             let decoder = PropertyListDecoder()
             let data = try! decoder.decode(SafariBookmarks.self, from: plistData!)
             return data
