@@ -21,9 +21,6 @@ extension BookmarkManager {
             let data = try! decoder.decode(SafariBookmarks.self, from: plistData!)
             return data
         }
-        private func createFile() {
-            // TODO: return bookmark data
-        }
         public func storeBookmarks(_ bookmarksData: SafariBookmarks, storeAt storageDirectory: String) {
             let fileManager = FileManager.default
             let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)

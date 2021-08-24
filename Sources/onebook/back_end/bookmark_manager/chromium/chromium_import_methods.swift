@@ -48,7 +48,7 @@ extension BookmarkManager {
                     for bookmark in bookmarkBarArray {
                         let bookmarkData = Data("""
                         url = \(bookmark.url)
-                        date_added = \(bookmark.date_added)
+                        data_added = \(bookmark.date_added)
                         guid = \(bookmark.guid)
                         """.utf8)
                         fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
@@ -57,7 +57,7 @@ extension BookmarkManager {
                     for bookmark in syncedArray {
                         let bookmarkData = Data("""
                         url =  \(bookmark.url)
-                        date_added = \(bookmark.date_added)
+                        data_added = \(bookmark.date_added)
                         guid =  \(bookmark.guid)
                         """.utf8)
                         fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
@@ -67,7 +67,7 @@ extension BookmarkManager {
                         for bookmark in folder.children {
                             let bookmarkData = Data("""
                             url = \(bookmark.url)
-                            date_added = \(bookmark.date_added)
+                            data_added = \(bookmark.date_added)
                             guid = \(bookmark.guid)
                             """.utf8)
                             fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
