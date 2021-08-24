@@ -18,6 +18,7 @@ extension BookmarkManager {
             return data
         }
         public func storeBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
+            // TODO: allow for nested folders (use recursion?)
             let fileManager = FileManager.default
 
             let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
