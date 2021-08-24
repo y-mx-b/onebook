@@ -69,4 +69,10 @@ A function used to sync browser bookmarks with Onebook's bookmarks.
 
 ### [ChromiumBookmarkManager](./Extensions/Chromium/ChromiumBookmarkManager.org)
 
+A struct containing properties and methods specificically related to
+Chromium/Chrome bookmarks.
+
 ### [SafariBookmarkManager](./Extensions/Safari/SafariBookmarkManager.org)
+
+A struct containing properties and methods specificically related to
+Safari bookmarks
