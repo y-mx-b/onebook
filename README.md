@@ -66,10 +66,10 @@ capable.
 
 ### How Does It work?
 
-**NOTE: This description may not be accurate, as Onebook is still under
-heavy** **development. Please refer to the information under
-[Functionality](#functionality) in order to** **get an accurate grasp of
-where Onebook is currently at.**
+\*NOTE: This description may not be accurate, as Onebook is still under
+heavy development. Please refer to the information under
+[Functionality](#functionality) in order to get an accurate grasp of
+where Onebook is currently at.\*
 
 First, Onebook will parse bookmarks from any browser of your choosing.
 Since each browser has its own method for storing bookmarks, there is a
@@ -145,19 +145,23 @@ To display the help message:
 ### Documentation
 
 -   [ ] Back-End
+    -   In-progress (isn't complete yet)
 -   [ ] Manpage
--   [x] Incredibly cryptic help message
+-   [x] Incredibly cryptic help message (will be expanded once more
+    functionality is implemented)
+    -   a Unix classic, along with [beatifully uninformative error
+        messages](https://www.gnu.org/fun/jokes/ed-msg.html)
 
 ### Functionality
 
--   [ ] Direct bookmark management
+-   [ ] Direct bookmark management (sometime soon? I hope?)
     -   [ ] Adding bookmarks
     -   [ ] Removing bookmarks
     -   [ ] Clearing all bookmarks
 -   [ ] [Importing bookmarks](#importing) (in-progress)
 -   [ ] Exporting bookmarks
 -   [ ] Syncing bookmarks
--   [ ] [Configuration](#configuration)/Programmability (perhaps use
+-   [ ] [Configuration](#configuration)\\/Programmability (perhaps use
     JavaScript for configuration?)
 
 1.  Importing
@@ -175,7 +179,7 @@ To display the help message:
         have to learn SQL)
         -   [ ] Implement Firefox bookmark parsing
         -   [ ] Implement Firefox bookmark data storage
-    -   [ ] Qutebrowser
+    -   [ ] Qutebrowser (shouldn't be that bad)
         -   [ ] Implement Qutebrowser bookmark parsing
         -   [ ] Implement Qutebrowser bookmark data storage
     -   [ ] Min (this will take a long time)
@@ -193,9 +197,12 @@ To display the help message:
 
 | Browser     | Import From | Export To | Sync |
 |-------------|:-----------:|:---------:|:----:|
-| Chromium    | O           | X         | X    |
-| Chrome      | O           | X         | X    |
-| Safari      | O           | X         | X    |
-| Firefox     | X           | X         | X    |
-| Qutebrowser | X           | X         | X    |
-| Min         | X           | X         | X    |
+| Chromium    |      O      | X         | X    |
+| Chrome      |      O      | X         | X    |
+| Safari      |      O      | X         | X    |
+| Qutebrowser |      X      | X         | X    |
+| Firefox     |      X      | X         | X    |
+| Brave       |      X      | X         | X    |
+| Min         |      X      | X         | X    |
+
+**Ordered by priority**
