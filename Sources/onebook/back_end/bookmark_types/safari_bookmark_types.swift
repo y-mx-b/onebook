@@ -1,3 +1,4 @@
+#if os(macOS)
 import Foundation
 
 /*
@@ -36,3 +37,4 @@ struct SafariBookmarks: Codable {
     let URLString: String?
     let WebBookmarkType: String
 }
+#endif

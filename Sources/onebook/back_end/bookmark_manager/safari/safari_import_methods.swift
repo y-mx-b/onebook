@@ -1,3 +1,4 @@
+#if os(macOS)
 import Foundation
 
 extension BookmarkManager {
@@ -89,3 +90,4 @@ extension BookmarkManager {
         }
     }
 }
+#endif

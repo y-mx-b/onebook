@@ -13,7 +13,9 @@ fileprivate let bookmarkFileArray: [String: String] = [
 fileprivate enum BrowserEnum: String {
     case chromium = "CHROMIUM"
     case chrome = "CHROME"
+    #if os(macOS)
     case safari = "SAFARI"
+    #endif
     case firefox = "FIREFOX"
     case qutebrowser = "QUTEBROWSER"
     case none
@@ -32,10 +34,13 @@ extension BookmarkManager {
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
+        #if os(macOS)
         case .safari:
             let bookmarkManager = SafariBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
+        #elseif os(Linux)
+        #endif
         // case .firefox:
         //     print(browserName)
         //     return nil
@@ -57,10 +62,12 @@ extension BookmarkManager {
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
             bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
+        #if os(macOS)
         case .safari:
             let bookmarkManager = SafariBookmarkManager()
             let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
             bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
+        #endif
         // case .firefox:
         // print(browserName)
         // case .qutebrowser:
