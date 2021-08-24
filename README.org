@@ -6,7 +6,8 @@ A universal bookmark manager (heavy WIP).
 
 Current state:
 
-- Import bookmarks from Chromium and Safari.
+- Can import bookmarks from Chromium and Safari.
+  - Nested bookmark folders are still broken on both.
 
 ** Table of Contents
 - [[#introduction][Introduction]]
