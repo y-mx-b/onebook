@@ -22,6 +22,7 @@ Current state:
     - [[#importing][Importing]]
     - [[#configuration][Configuration]]
   + [[#browser-support][Browser Support]]
+  + [[#miscellaneous][Miscellaneous]]
 
 ** Introduction
    :PROPERTIES:
@@ -157,9 +158,11 @@ SUBCOMMANDS:
   :PROPERTIES:
   :CUSTOM_ID: documentation
   :END:
-- [ ] Back-End
+- [X] Back-End
   - Very much in-progress, nowhere near complete
-- [ ] Manpage
+- [X] Manpage
+  - Will write a script to automatically install it
+  - Someday soon
 - [X] Incredibly cryptic help message (will be expanded once more functionality is implemented)
   - a Unix classic, along with [[https://www.gnu.org/fun/jokes/ed-msg.html][beatifully uninformative error messages]]
 *** Functionality
@@ -214,8 +217,8 @@ SUBCOMMANDS:
 
 *** Browser support
   :PROPERTIES:
-    :CUSTOM_ID: browser-support
-    :END:
+  :CUSTOM_ID: browser-support
+  :END:
 
 *Ordered by priority*
 
@@ -228,3 +231,12 @@ SUBCOMMANDS:
 | Qutebrowser | X           | X         | X    |
 | Firefox     | X           | X         | X    |
 | Min         | X           | X         | X    |
+
+*** Miscellaneous
+  :PROPERTIES:
+  :CUSTOM_ID: miscellaneous
+  :END:
+
+- [ ] An install script
+- [ ] Maybe a homebrew formula?
+- [ ] bash/zsh autocomplete

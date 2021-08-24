@@ -21,6 +21,7 @@ Current state:
         -   [Importing](#importing)
         -   [Configuration](#configuration)
     -   [Browser Support](#browser-support)
+    -   [Miscellaneous](#miscellaneous)
 
 ## Introduction
 
@@ -144,9 +145,11 @@ To display the help message:
 
 ### Documentation
 
--   [ ] Back-End
+-   [x] Back-End
     -   Very much in-progress, nowhere near complete
--   [ ] Manpage
+-   [x] Manpage
+    -   Will write a script to automatically install it
+    -   Someday soon
 -   [x] Incredibly cryptic help message (will be expanded once more
     functionality is implemented)
     -   a Unix classic, along with [beatifully uninformative error
@@ -210,3 +213,9 @@ To display the help message:
 | Qutebrowser |      X      |     X     |   X  |
 | Firefox     |      X      |     X     |   X  |
 | Min         |      X      |     X     |   X  |
+
+### Miscellaneous
+
+-   [ ] An install script
+-   [ ] Maybe a homebrew formula?
+-   [ ] bash/zsh autocomplete
