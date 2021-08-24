@@ -36,7 +36,6 @@ extension BookmarkManager {
             let bookmarkManager = SafariBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
-            return nil
         // case .firefox:
         //     print(browserName)
         //     return nil
