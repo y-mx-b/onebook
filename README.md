@@ -145,7 +145,7 @@ To display the help message:
 ### Documentation
 
 -   [ ] Back-End
-    -   In-progress (isn't complete yet)
+    -   Very much in-progress, nowhere near complete
 -   [ ] Manpage
 -   [x] Incredibly cryptic help message (will be expanded once more
     functionality is implemented)
@@ -158,7 +158,9 @@ To display the help message:
     -   [ ] Adding bookmarks
     -   [ ] Removing bookmarks
     -   [ ] Clearing all bookmarks
--   [ ] [Importing bookmarks](#importing) (in-progress)
+-   [ ] [Importing bookmarks](#importing)
+    -   In-progress, code must be refactored to handle nested folders (I
+        forgot about those)
 -   [ ] Exporting bookmarks
 -   [ ] Syncing bookmarks
 -   [ ] [Configuration](#configuration)\\/Programmability (perhaps use
@@ -175,6 +177,8 @@ To display the help message:
     -   [x] Safari
         -   [x] Implement Safari bookmark parsing
         -   [x] Implement Safari bookmark data storage
+    -   [ ] Brave
+        -   Also literally the same as Chromium
     -   [ ] Firefox (this might take a while, I *really* don't want to
         have to learn SQL)
         -   [ ] Implement Firefox bookmark parsing

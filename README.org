@@ -158,7 +158,7 @@ SUBCOMMANDS:
   :CUSTOM_ID: documentation
   :END:
 - [ ] Back-End
-  - In-progress (isn't complete yet)
+  - Very much in-progress, nowhere near complete
 - [ ] Manpage
 - [X] Incredibly cryptic help message (will be expanded once more functionality is implemented)
   - a Unix classic, along with [[https://www.gnu.org/fun/jokes/ed-msg.html][beatifully uninformative error messages]]
@@ -170,7 +170,8 @@ SUBCOMMANDS:
   + [ ] Adding bookmarks
   + [ ] Removing bookmarks
   + [ ] Clearing all bookmarks
-- [ ] [[#importing][Importing bookmarks]] (in-progress)
+- [ ] [[#importing][Importing bookmarks]]
+  - In-progress, code must be refactored to handle nested folders (I forgot about those)
 - [ ] Exporting bookmarks
 - [ ] Syncing bookmarks
 - [ ] [[#configuration][Configuration]]\/Programmability (perhaps use JavaScript for configuration?)
@@ -189,6 +190,8 @@ SUBCOMMANDS:
 - [X] Safari
   + [X] Implement Safari bookmark parsing
   + [X] Implement Safari bookmark data storage
+- [ ] Brave
+  + Also literally the same as Chromium
 - [ ] Firefox (this might take a while, I /really/ don't want to have to learn SQL)
   + [ ] Implement Firefox bookmark parsing
   + [ ] Implement Firefox bookmark data storage
