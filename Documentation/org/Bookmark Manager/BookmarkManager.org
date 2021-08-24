@@ -1,0 +1,106 @@
+* BookmarkManager
+  :PROPERTIES:
+  :CUSTOM_ID: bookmark-manager
+  :END:
+
+#+BEGIN_SRC swift
+struct BookmarkManager {...}
+#+END_SRC
+
+** Properties
+  :PROPERTIES:
+  :CUSTOM_ID: properties
+  :END:
+*** browserName
+  :PROPERTIES:
+  :CUSTOM_ID: browsername
+  :END:
+
+#+BEGIN_SRC swift
+var browserName: String?
+#+END_SRC
+
+The name of the browser. Has a default value of =nil=.
+
+*** bookmarksFilePath
+  :PROPERTIES:
+  :CUSTOM_ID: bookmarksfilepath
+  :END:
+
+#+BEGIN_SRC swift
+var bookmarksFilePath: String?
+#+END_SRC
+
+A string with the path to a bookmark file. Has a default value of =nil=.
+
+*** storageDirectory
+  :PROPERTIES:
+  :CUSTOM_ID: storagedirectory
+  :END:
+#+BEGIN_SRC swift
+var storageDirectory: String?
+#+END_SRC
+
+A string with the path to the local bookmark storage directory used by Onebook.
+Has a default value of ="\(NSHomeDirectory())/.bookmarks/"=.
+
+** Methods
+  :PROPERTIES:
+  :CUSTOM_ID: methods
+  :END:
+*** create
+  :PROPERTIES:
+  :CUSTOM_ID: create
+  :END:
+
+#+BEGIN_SRC swift
+func create(_ bookmarkPath : String?, siteURL : URL?) {...}
+#+END_SRC
+
+A function used to create bookmarks (WIP).
+
+*** remove
+  :PROPERTIES:
+  :CUSTOM_ID: remove
+  :END:
+
+#+BEGIN_SRC swift
+func remove() {...}
+#+END_SRC
+
+A function used to remove bookmarks.
+
+*** clean
+  :PROPERTIES:
+  :CUSTOM_ID: clean
+  :END:
+
+#+BEGIN_SRC swift
+func clean() {...}
+#+END_SRC
+
+A function used to remove empty bookmark folders.
+
+*** sync
+  :PROPERTIES:
+  :CUSTOM_ID:
+  :END:
+
+#+BEGIN_SRC swift
+func sync() {...}
+#+END_SRC
+
+A function used to sync browser bookmarks with Onebook's bookmarks.
+** Extensions
+  :PROPERTIES:
+  :CUSTOM_ID: extensions
+  :END:
+*** [[./Extensions/Chromium/ChromiumBookmarkManager.org][ChromiumBookmarkManager]]
+
+A struct containing properties and methods specificically related to
+Chromium/Chrome bookmarks.
+
+*** [[./Extensions/Safari/SafariBookmarkManager.org][SafariBookmarkManager]]
+
+A struct containing properties and methods specificically related to
+Safari bookmarks
