@@ -1,8 +1,8 @@
 import Foundation
 
 struct BookmarkManager {
-    var browserName: String? = nil
-    var bookmarksFilePath: String? = nil
+    var browserName: String?
+    var bookmarksFilePath: String?
     var storageDirectory = "\(NSHomeDirectory())/.bookmarks/"
 
     func create(_ bookmarkPath: String?, siteURL: URL?) {
