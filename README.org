@@ -69,9 +69,9 @@ Anything that can interact with files and directories will be just as capable.
     :CUSTOM_ID: how-does-it-work
     :END:
 
-*NOTE: This description may not be accurate, as Onebook is still under heavy
-development. Please refer to the information under [[#functionality][Functionality]] in order to
-get an accurate grasp of where Onebook is currently at.*
+*NOTE: This description may not be accurate, as Onebook is still under heavy*
+*development. Please refer to the information under [[#functionality][Functionality]] in order to*
+*get an accurate grasp of where Onebook is currently at.*
 
 First, Onebook will parse bookmarks from any browser of your choosing. Since
 each browser has its own method for storing bookmarks, there is a lot of work

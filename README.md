@@ -68,10 +68,10 @@ capable.
 
 ### How Does It work?
 
-\*NOTE: This description may not be accurate, as Onebook is still under
-heavy development. Please refer to the information under
-[Functionality](#functionality) in order to get an accurate grasp of
-where Onebook is currently at.\*
+**NOTE: This description may not be accurate, as Onebook is still under
+heavy** **development. Please refer to the information under
+[Functionality](#functionality) in order to** **get an accurate grasp of
+where Onebook is currently at.**
 
 First, Onebook will parse bookmarks from any browser of your choosing.
 Since each browser has its own method for storing bookmarks, there is a
