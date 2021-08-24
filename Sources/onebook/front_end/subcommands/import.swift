@@ -13,8 +13,7 @@ extension Onebook {
             var browser: String = "Chrome"
 
         mutating func run() {
-            var bookmarkManager = BookmarkManager(browserName: browser, bookmarksFilePath: nil)
-            // replace bookmarksFilePath with variable once config is implemented properly
+            var bookmarkManager = BookmarkManager(browserName: browser)
             if bookmarkManager.bookmarksFilePath == nil { bookmarkManager.setDefaultBookmarksPath() }
             let bookmarks = bookmarkManager.getBookmarks()
             bookmarkManager.storeBookmarks(bookmarks)
