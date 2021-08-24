@@ -12,15 +12,16 @@ extension BookmarkManager {
             }
         }
         public func parseBookmarks(_ bookmarksDump: Data?) -> SafariBookmarks? {
-            if bookmarksDump == nil {
-                return nil
-            }
+            if bookmarksDump == nil { return nil }
 
             let plistData = bookmarksDump
             let decoder = PropertyListDecoder()
             let data = try! decoder.decode(SafariBookmarks.self, from: plistData!)
             return data
         }
+
+        // TODO: add dates in bookmark files
+        // TODO: add recursive method to go create all folders and files
         public func storeBookmarks(_ bookmarksData: SafariBookmarks, storeAt storageDirectory: String) {
             let fileManager = FileManager.default
             let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
@@ -43,8 +44,13 @@ extension BookmarkManager {
             }
 
             for bookmark in bookmarksArray {
+                let content = Data("""
+                url = \(bookmark.URLString!)
+                date_added =
+                guid = \(bookmark.WebBookmarkUUID)
+                """.utf8)
                 let filePath = "\(storageDirectory)/\(bookmark.URIDictionary!.title)"
-                fileManager.createFile(atPath: filePath, contents: nil, attributes: nil)
+                fileManager.createFile(atPath: filePath, contents: content, attributes: nil)
             }
 
             for item in foldersArray {
@@ -67,8 +73,13 @@ extension BookmarkManager {
                             } catch {
                             }
                         case "WebBookmarkTypeLeaf":
+                            let content = Data("""
+                            url = \(child.URLString!)
+                            date_added =
+                            guid = \(child.WebBookmarkUUID)
+                            """.utf8)
                             let bookmarkPath = "\(storageDirectory)/\(item.Title!)/\(child.URIDictionary!.title)"
-                            fileManager.createFile(atPath: bookmarkPath, contents: nil, attributes: nil)
+                            fileManager.createFile(atPath: bookmarkPath, contents: content, attributes: nil)
                         default:
                             print("failure")
                         }
