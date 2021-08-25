@@ -34,7 +34,7 @@ extension BookmarkManager {
             func createFolder(at folderPath: String) throws {
                 try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false)
             }
-            func createFile(at filePath: String, bookmark: ChromiumBookmarks.Roots.Children) {
+            func createFile(at filePath: String, bookmark: ChromiumChildren) {
                 let bookmarkData = Data("""
                 url = \(bookmark.url!)
                 date_added = \(bookmark.date_added)
@@ -43,7 +43,7 @@ extension BookmarkManager {
                 fileManager.createFile(atPath: filePath, contents: bookmarkData)
             }
 
-            func recursiveStorage(_ bookmarkArray: [ChromiumBookmarks.Roots.Children]?, at basePath: String) {
+            func recursiveStorage(_ bookmarkArray: [ChromiumChildren]?, at basePath: String) {
                 var folderPath: String;
 
                 for item in bookmarkArray! {
