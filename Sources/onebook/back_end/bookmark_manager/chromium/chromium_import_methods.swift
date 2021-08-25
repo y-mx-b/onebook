@@ -3,6 +3,7 @@ import Foundation
 extension BookmarkManager {
     public struct ChromiumBookmarkManager {
         public func getBookmarks(from bookmarksFilePath: URL) -> Data? {
+            // TODO change function to a throwing one, make things safer
             do {
                 let contents = try Data(contentsOf: bookmarksFilePath)
                 return contents
@@ -11,6 +12,7 @@ extension BookmarkManager {
             }
         }
         public func parseBookmarks(_ bookmarksDump: Data?) -> ChromiumBookmarks? {
+            // TODO change function to a throwing one, make things safer
             if bookmarksDump == nil { return nil }
 
             let decoder = JSONDecoder()
