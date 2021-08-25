@@ -9,9 +9,16 @@ pandoc ./Documentation/org/Bookmark\ Manager/Extensions/Safari/SafariBookmarkMan
 # SafariBookmarkManager struct
 pandoc ./Documentation/org/Bookmark\ Manager/Extensions/Chromium/ChromiumBookmarkManager.org -t gfm -o ./Documentation/Bookmark\ Manager/Extensions/Chromium/ChromiumBookmarkManager.md
 
-# center elements in table in README.md according to GitHub markdown
+# center elements in browser table in README.md according to GitHub markdown
 sed -i  '' -e 's/|-------------|-------------|-----------|------|/|-------------|:-----------:|:---------:|:----:|/g' README.md
 
-# center elements in table in README.md physically
+# center elements in browser table in README.md physically
 sed -i '' -e 's/| O           | X         | X    |/|      O      |     X     |   X  |/g' README.md
 sed -i '' -e 's/| X           | X         | X    |/|      X      |     X     |   X  |/g' README.md
+
+# center elements in OS table in README.md according to GitHub markdown
+sed -i '' -e 's/|----------|------------|/|:--------:|:----------:|/g' README.md
+
+# center elements in OS table in README.md physically
+sed -i '' -e 's/| O        | O          |/|     O    |      O     |/g' README.md
+sed -i '' -e 's/| X        | ?          |/|     X    |      ?     |/g' README.md
