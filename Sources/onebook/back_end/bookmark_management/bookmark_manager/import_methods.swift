@@ -11,9 +11,9 @@ fileprivate let bookmarkFileArray: [String: String] = [
 ]
 #elseif os(Linux)
 fileprivate let bookmarkFileArray: [String: String] = [
-    "CHROMIUM": "\(NSHomeDirectory())/.config/chromium/Default/Bookmarks"
-    // "CHROME":
-    // "BRAVE":
+    "CHROMIUM": "\(NSHomeDirectory())/.config/chromium/Default/Bookmarks",
+    "CHROME": "\(NSHomeDirectory())/.config/google-chrome/Default/Bookmarks",
+    "BRAVE": "\(NSHomeDirectory())/.config/BraveSoftware/Brave-Browser/Default/Bookmarks"
     // "FIREFOX":
     // "QUTEBROWSER":
 ]
