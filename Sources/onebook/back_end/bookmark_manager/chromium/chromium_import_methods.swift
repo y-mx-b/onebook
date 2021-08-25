@@ -28,55 +28,34 @@ extension BookmarkManager {
             let favoritesPath = "\(storageDirectory)/Favorites"
             let syncedPath = "\(storageDirectory)/Synced"
 
-            func createFolders() {
-                let otherArray = bookmarksData.roots.other.children
+            func createFolder(at folderPath: String) throws {
+                try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false)
+            }
+            func createFile(at filePath: String, bookmark: ChromiumBookmarks.Roots.Children) {
+                let bookmarkData = Data("""
+                url = \(bookmark.url!)
+                date_added = \(bookmark.date_added)
+                guid = \(bookmark.guid)
+                """.utf8)
+                fileManager.createFile(atPath: filePath, contents: bookmarkData)
+            }
 
-                var folderArray = [favoritesPath, syncedPath]
+            func recursiveStorage(_ bookmarkArray: [ChromiumBookmarks.Roots.Children]?, at basePath: String) {
+                var folderPath: String;
 
-                for folder in otherArray {
-                    folderArray.append("\(storageDirectory)\(folder.name)")
-                }
-                for folder in folderArray {
-                    do {
-                        try fileManager.createDirectory(atPath: folder, withIntermediateDirectories: false)
-                    } catch {
-                        // print("Folder \(folder) already exists. Skipping step.")
+                for item in bookmarkArray! {
+                folderPath = basePath + "/"
+                    if item.url != nil {
+                        createFile(at: folderPath + item.name, bookmark: item)
+                    } else {
+                        folderPath = folderPath + item.name + "/"
+                        do { try createFolder(at: folderPath) } catch {print(error)}
+                        recursiveStorage(item.children, at: folderPath)
                     }
                 }
             }
 
-            func createFiles() {
-                for bookmark in bookmarkBarArray {
-                    let bookmarkData = Data("""
-                    url = \(bookmark.url)
-                    date_added = \(bookmark.date_added)
-                    guid = \(bookmark.guid)
-                    """.utf8)
-                    fileManager.createFile(atPath: "\(favoritesPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                }
-
-                for bookmark in syncedArray {
-                    let bookmarkData = Data("""
-                    url =  \(bookmark.url)
-                    date_added = \(bookmark.date_added)
-                    guid =  \(bookmark.guid)
-                    """.utf8)
-                    fileManager.createFile(atPath: "\(syncedPath)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                }
-
-                for folder in otherArray {
-                    for bookmark in folder.children {
-                        let bookmarkData = Data("""
-                        url = \(bookmark.url)
-                        date_added = \(bookmark.date_added)
-                        guid = \(bookmark.guid)
-                        """.utf8)
-                        fileManager.createFile(atPath: "\(storageDirectory)/\(folder.name)/\(bookmark.name)", contents: bookmarkData, attributes: nil)
-                    }
-                }
-            }
-            createFolders()
-            createFiles()
+            recursiveStorage(bookmarkBarArray, at: storageDirectory)
         }
     }
 }
