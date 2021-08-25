@@ -26,7 +26,8 @@ func createConfigPrompt() {
 
 func checkForConfigFile() -> (Bool, String) {
     let configPath = "\(NSHomeDirectory())/.config/onebook/onebook.toml"
-    return (FileManager.default.fileExists(atPath: configPath), configPath)
+    let fileChecker = FileManager.default
+    return (fileChecker.fileExists(atPath: configPath), configPath)
 }
 
 func readFromConfig(_ configData: String?) -> Config? {
