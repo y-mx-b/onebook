@@ -1,7 +1,7 @@
 import Foundation
 import ArgumentParser
 
-func createBookmarksDirectory() {
+fileprivate func createBookmarksDirectory() {
     let dir = FileManager.default
     let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
     do {
@@ -11,7 +11,7 @@ func createBookmarksDirectory() {
     }
 }
 
-func createBookmarksDirectoryPrompt() {
+fileprivate func createBookmarksDirectoryPrompt() {
     let permission = readLine()
 
     switch permission!.uppercased() {

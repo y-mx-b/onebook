@@ -10,10 +10,13 @@ extension Onebook {
                 "The browser to import bookmarks from.",
                 discussion: "If no browser is provided, the default browser will be used.",
                 valueName: "browser-name"))
-            var browser: String
+            var browser: String = "Chrome"
 
         mutating func run() {
-            importBookmarkData(from: browser)
+            var bookmarkManager = BookmarkManager(browserName: browser)
+            if bookmarkManager.bookmarksFilePath == nil { bookmarkManager.setDefaultBookmarksPath() }
+            let bookmarks = bookmarkManager.getBookmarks()
+            bookmarkManager.storeBookmarks(bookmarks)
         }
     }
 }

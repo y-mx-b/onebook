@@ -1,3 +1,4 @@
+#if os(macOS)
 import Foundation
 
 /*
@@ -26,13 +27,4 @@ struct SafariChildren: Codable {
     let WebBookmarkType: String
     let URIDictionary: SafariURIDictionary?
 }
-struct SafariBookmarks: Codable {
-    let WebBookmarkUUID: String
-    // let WebBookmarkFileVersion: Int
-    let Children: [SafariChildren]?
-    let Title: String
-    // only exists for lone bookmarks
-    let URIDictionary: SafariURIDictionary?
-    let URLString: String?
-    let WebBookmarkType: String
-}
+#endif
