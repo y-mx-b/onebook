@@ -217,14 +217,16 @@ To display the help message:
 
 ### Operating System Support
 
+**Ordered by priority**
+
 | Operating System | Compiles | Functional |
 |------------------|:--------:|:----------:|
 | macOS            |     O    |      O     |
 | Ubuntu           |     O    |      O     |
-| Windows\\\*      |     X    |      ?     |
+| Windows          |     X    |      ?     |
 
-\\\*Note: I can't get Windows to compile for me. If anyone can, that'd
-be a great help.
+**Note: I can't get Windows to compile for me. If anyone can, that'd be
+a great** **help.**
 
 ### Miscellaneous
 
