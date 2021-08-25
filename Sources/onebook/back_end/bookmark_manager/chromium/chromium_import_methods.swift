@@ -44,10 +44,10 @@ extension BookmarkManager {
             }
 
             func recursiveStorage(_ bookmarkArray: [ChromiumChildren]?, at basePath: String) {
-                var folderPath: String;
+                var folderPath: String
 
                 for item in bookmarkArray! {
-                folderPath = basePath + "/"
+                    folderPath = basePath + "/"
                     if item.url != nil {
                         createFile(at: folderPath + item.name, bookmark: item)
                     } else {
