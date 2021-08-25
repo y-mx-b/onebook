@@ -1,7 +1,7 @@
 import Foundation
 
 extension BookmarkManager {
-    public struct ChromiumBookmarkManager {
+    public struct ChromiumBookmarkManager: BrowserBookmarkManager {
         public func getBookmarks(from bookmarksFilePath: URL) -> Data? {
             // TODO change function to a throwing one, make things safer
             do {
@@ -19,17 +19,17 @@ extension BookmarkManager {
             let data = try! decoder.decode(ChromiumBookmarks.self, from: bookmarksDump!)
             return data
         }
-        public func storeBookmarks(_ bookmarksData: ChromiumBookmarks, storeAt storageDirectory: String) {
+        public func storeBookmarks(_ bookmarksData: ChromiumBookmarks?, storeAt storageDirectory: String) {
             // TODO: clean it up a bit, make it safer, perhaps make it portable to Brave?
             let fileManager = FileManager.default
 
-            let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
-            let syncedArray = bookmarksData.roots.synced.children
-            let otherArray = bookmarksData.roots.other.children
+            let bookmarkBarArray = bookmarksData!.roots.bookmark_bar.children
+            let syncedArray = bookmarksData!.roots.synced.children
+            let otherArray = bookmarksData!.roots.other.children
             let masterArray = [bookmarkBarArray, syncedArray, otherArray]
 
-            let favoritesPath = "\(storageDirectory)/Favorites"
-            let syncedPath = "\(storageDirectory)/Synced"
+            // let favoritesPath = "\(storageDirectory)/Favorites"
+            // let syncedPath = "\(storageDirectory)/Synced"
 
             func createFolder(at folderPath: String) throws {
                 try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false)
@@ -52,7 +52,7 @@ extension BookmarkManager {
                         createFile(at: folderPath + item.name, bookmark: item)
                     } else {
                         folderPath = folderPath + item.name + "/"
-                        do { try createFolder(at: folderPath) } catch {print(error)}
+                        do { try createFolder(at: folderPath) } catch { }
                         recursiveStorage(item.children, at: folderPath)
                     }
                 }

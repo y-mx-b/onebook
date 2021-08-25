@@ -2,7 +2,7 @@
 import Foundation
 
 extension BookmarkManager {
-    public struct SafariBookmarkManager {
+    public struct SafariBookmarkManager: BrowserBookmarkManager {
         public func getBookmarks(from bookmarksFilePath: URL) -> Data? {
             // TODO change fuction to throw, make safer
             do {
@@ -24,7 +24,7 @@ extension BookmarkManager {
 
         // TODO: add dates in bookmark files
         // TODO: add recursive method to go create all folders and files
-        public func storeBookmarks(_ bookmarksData: SafariChildren, storeAt storageDirectory: String) {
+        public func storeBookmarks(_ bookmarksData: SafariChildren?, storeAt storageDirectory: String) {
             let fileManager = FileManager.default
 
             // let bookmarks = bookmarksData.Children![1...]
@@ -57,7 +57,7 @@ extension BookmarkManager {
                     case "WebBookmarkTypeList":
                         if item.Title != nil && item.Children != nil {
                         folderPath = folderPath + item.Title! + "/"
-                        do { try createFolder(at: folderPath) } catch { print(error) }
+                        do { try createFolder(at: folderPath) } catch { }
                         recursiveStorage(item.Children!, at: folderPath)
                         }
                     default:
@@ -65,7 +65,7 @@ extension BookmarkManager {
                     }
                 }
             }
-            recursiveStorage(bookmarksData.Children!, at: storageDirectory)
+            recursiveStorage(bookmarksData!.Children!, at: storageDirectory)
         }
     }
 }
