@@ -194,7 +194,7 @@ SUBCOMMANDS:
 - [X] Safari
   + [X] Implement Safari bookmark parsing
   + [X] Implement Safari bookmark data storage
-- [ ] Brave
+- [X] Brave
   + Also literally the same as Chromium
 - [ ] Firefox (this might take a while, I /really/ don't want to have to learn SQL)
   + [ ] Implement Firefox bookmark parsing
@@ -228,7 +228,7 @@ SUBCOMMANDS:
 | Chromium    | O           | X         | X    |
 | Chrome      | O           | X         | X    |
 | Safari      | O           | X         | X    |
-| Brave       | X           | X         | X    |
+| Brave       | O           | X         | X    |
 | Qutebrowser | X           | X         | X    |
 | Firefox     | X           | X         | X    |
 | Min         | X           | X         | X    |

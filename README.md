@@ -181,7 +181,7 @@ To display the help message:
     -   [x] Safari
         -   [x] Implement Safari bookmark parsing
         -   [x] Implement Safari bookmark data storage
-    -   [ ] Brave
+    -   [x] Brave
         -   Also literally the same as Chromium
     -   [ ] Firefox (this might take a while, I *really* don't want to
         have to learn SQL)
@@ -210,7 +210,7 @@ To display the help message:
 | Chromium    |      O      |     X     |   X  |
 | Chrome      |      O      |     X     |   X  |
 | Safari      |      O      |     X     |   X  |
-| Brave       |      X      |     X     |   X  |
+| Brave       |      O      |     X     |   X  |
 | Qutebrowser |      X      |     X     |   X  |
 | Firefox     |      X      |     X     |   X  |
 | Min         |      X      |     X     |   X  |
