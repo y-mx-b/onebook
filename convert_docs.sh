@@ -3,7 +3,7 @@
 # README
 pandoc ./README.org -t gfm -o ./README.md
 # BookamrkManager struct
-pandoc ./Documentation/org/Bookmark\ Manager/BookmarkManager.org -t gfm -o ./Documentation/Bookmark\ Manager/BookmarkManager.org
+pandoc ./Documentation/org/Bookmark\ Manager/BookmarkManager.org -t gfm -o ./Documentation/Bookmark\ Manager/BookmarkManager.md
 # ChromiumBookmarkManager struct
 pandoc ./Documentation/org/Bookmark\ Manager/Extensions/Safari/SafariBookmarkManager.org -t gfm -o ./Documentation/Bookmark\ Manager/Extensions/Safari/SafariBookmarkManager.md
 # SafariBookmarkManager struct
