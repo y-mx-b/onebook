@@ -24,6 +24,7 @@ extension BookmarkManager {
             let bookmarkBarArray = bookmarksData.roots.bookmark_bar.children
             let syncedArray = bookmarksData.roots.synced.children
             let otherArray = bookmarksData.roots.other.children
+            let masterArray = [bookmarkBarArray, syncedArray, otherArray]
 
             let favoritesPath = "\(storageDirectory)/Favorites"
             let syncedPath = "\(storageDirectory)/Synced"
@@ -55,7 +56,9 @@ extension BookmarkManager {
                 }
             }
 
-            recursiveStorage(bookmarkBarArray, at: storageDirectory)
+            for bookmarkArray in masterArray {
+                recursiveStorage(bookmarkArray, at: storageDirectory)
+            }
         }
     }
 }
