@@ -5,8 +5,17 @@ fileprivate let bookmarkFileArray: [String: String] = [
     "CHROMIUM": "\(NSHomeDirectory())/Library/Application Support/Chromium/Default/Bookmarks",
     "CHROME": "\(NSHomeDirectory())/Library/Application Support/Google/Chrome/Default/Bookmarks",
     "SAFARI": "\(NSHomeDirectory())/Library/Safari/Bookmarks.plist",
+    "BRAVE": "\(NSHomeDirectory())/Library/Application Support/BraveSoftware/Brave-Browser/Default/Bookmarks",
     "FIREFOX": "",
     "QUTEBROWSER": ""
+]
+#elseif os(Linux)
+fileprivate let bookmarkFileArray: [String: String] = [
+    "CHROMIUM": "\(NSHomeDirectory())/.config/chromium/Default/Bookmarks"
+    // "CHROME":
+    // "BRAVE":
+    // "FIREFOX":
+    // "QUTEBROWSER":
 ]
 #endif
 
@@ -16,6 +25,7 @@ fileprivate enum BrowserEnum: String {
     #if os(macOS)
     case safari = "SAFARI"
     #endif
+    case brave = "BRAVE"
     case firefox = "FIREFOX"
     case qutebrowser = "QUTEBROWSER"
     case none
@@ -30,7 +40,7 @@ extension BookmarkManager {
         let browser = BrowserEnum(rawValue: browserName!.uppercased()) ?? .none
 
         switch browser {
-        case .chromium, .chrome:
+        case .chromium, .chrome, .brave:
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
@@ -39,7 +49,6 @@ extension BookmarkManager {
             let bookmarkManager = SafariBookmarkManager()
             let bookmarksURL = URL(fileURLWithPath: bookmarksFilePath ?? "")
             return bookmarkManager.getBookmarks(from: bookmarksURL)
-        #elseif os(Linux)
         #endif
         // case .firefox:
         //     print(browserName)
@@ -58,7 +67,7 @@ extension BookmarkManager {
         // let storageDirectoryURL = URL(fileURLWithPath: storageDirectory, isDirectory: true)
 
         switch browser {
-        case .chromium, .chrome:
+        case .chromium, .chrome, .brave:
             let bookmarkManager = ChromiumBookmarkManager()
             let bookmarks = bookmarkManager.parseBookmarks(bookmarksDump)
             bookmarkManager.storeBookmarks(bookmarks!, storeAt: storageDirectory)
