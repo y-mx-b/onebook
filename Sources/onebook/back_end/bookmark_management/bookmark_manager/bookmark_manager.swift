@@ -5,15 +5,32 @@ struct BookmarkManager {
     var bookmarksFilePath: String?
     var storageDirectory = "\(NSHomeDirectory())/.bookmarks/"
 
+    func check(_ bookmarkPath: String?) throws -> Bool? {
+        // TODO check for the existence of a file
+        guard let input = bookmarkPath else { return nil }
+
+        let fileManager = FileManager.default
+
+        if fileManager.fileExists(atPath: bookmarkPath!) {
+            var unsafeFalse: ObjCBool = false
+            if fileManager.fileExists(atPath: bookmarkPath!, isDirectory: &unsafeFalse) { return(true) }
+        } else { return(false) }
+        return(nil)
+    }
+
     func create(_ bookmarkPath: String?, siteURL: URL?) {
         // TODO: add bookmarks
         // - create intermediate folders (if neccessary)
         // - create bookmark file
-        // - create new GUID
+        // - create new GUID, date
         // - insert necessary information into bookmark file
     }
 
-    func remove() {
+    func move(_ originalPath: String?, to newPath: String?) {
+        // TODO: check if file or folder, move accordingly
+    }
+
+    func remove(_ bookmarkPath: String?) {
         // TODO: remove bookmarks
         // remove files
         // if folder is empty, ask to remove
@@ -23,7 +40,7 @@ struct BookmarkManager {
         // TODO: remove empty bookmark folders
     }
 
-    func sync() {
+    func sync(_ browsers: [String]) {
         // TODO: sync bookmarks between browsers (this might take a while)
     }
 }
