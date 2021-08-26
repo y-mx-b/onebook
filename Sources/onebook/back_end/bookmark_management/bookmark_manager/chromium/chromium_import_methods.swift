@@ -20,7 +20,6 @@ extension BookmarkManager {
             return data
         }
         public func storeBookmarks(_ bookmarksData: ChromiumBookmarks?, storeAt storageDirectory: String) {
-            // TODO: clean it up a bit, make it safer, perhaps make it portable to Brave?
             let fileManager = FileManager.default
 
             let bookmarkBarArray = bookmarksData!.roots.bookmark_bar.children
