@@ -36,10 +36,10 @@ Onebook. Has a default value of `"\(NSHomeDirectory())/.bookmarks/"`.
 ### create
 
 ``` swift
-func create(_ bookmarkPath : String?, siteURL : URL?) {...}
+func create(_ bookmarkPath : String, siteURL : String) {...}
 ```
 
-A function used to create bookmarks (WIP).
+A function used to create bookmarks. Functional, but needs improving.
 
 ### remove
 

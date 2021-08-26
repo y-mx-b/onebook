@@ -54,10 +54,10 @@ Has a default value of ="\(NSHomeDirectory())/.bookmarks/"=.
   :END:
 
 #+BEGIN_SRC swift
-func create(_ bookmarkPath : String?, siteURL : URL?) {...}
+func create(_ bookmarkPath : String, siteURL : String) {...}
 #+END_SRC
 
-A function used to create bookmarks (WIP).
+A function used to create bookmarks. Functional, but needs improving.
 
 *** remove
   :PROPERTIES:

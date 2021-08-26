@@ -146,7 +146,8 @@ To display the help message:
 
 ### Documentation
 
--   [x] Back-End
+-   [x]
+    [Back-End](./Documentation/Bookmark Manager/BookmarkManager.md)
     -   Very much in-progress, nowhere near complete
 -   [x] Manpage
     -   Will write a script to automatically install it
@@ -158,9 +159,11 @@ To display the help message:
 
 ### Functionality
 
--   [ ] Direct bookmark management (sometime soon? I hope?)
-    -   [ ] Adding bookmarks
+-   [ ] Direct bookmark management (WIP)
+    -   [x] Adding bookmarks
     -   [ ] Removing bookmarks
+    -   [ ] Moving bookmarks
+    -   [ ] Purging empty bookmark folders
     -   [ ] Clearing all bookmarks
 -   [ ] [Importing bookmarks](#importing)
     -   In-progress, code must be refactored to handle nested folders (I
@@ -168,9 +171,6 @@ To display the help message:
 -   [ ] Exporting bookmarks
 -   [ ] Syncing bookmarks
 -   [ ] [Configuration](#configuration)\\/Programmability (perhaps use
-    JavaScript for configuration?)
-
-1.  Importing
 
     -   [x] Chromium
         -   [x] Implement Chromium bookmark parsing

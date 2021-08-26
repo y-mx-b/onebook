@@ -159,7 +159,7 @@ SUBCOMMANDS:
   :PROPERTIES:
   :CUSTOM_ID: documentation
   :END:
-- [X] Back-End
+- [X] [[./Documentation/org/Bookmark Manager/BookmarkManager.org][Back-End]]
   - Very much in-progress, nowhere near complete
 - [X] Manpage
   - Will write a script to automatically install it
@@ -170,9 +170,11 @@ SUBCOMMANDS:
     :PROPERTIES:
     :CUSTOM_ID: functionality
     :END:
-- [ ] Direct bookmark management (sometime soon? I hope?)
-  + [ ] Adding bookmarks
+- [-] Direct bookmark management (WIP)
+  + [X] Adding bookmarks
   + [ ] Removing bookmarks
+  + [ ] Moving bookmarks
+  + [ ] Purging empty bookmark folders
   + [ ] Clearing all bookmarks
 - [ ] [[#importing][Importing bookmarks]]
   - In-progress, code must be refactored to handle nested folders (I forgot about those)

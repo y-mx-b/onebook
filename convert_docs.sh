@@ -22,3 +22,7 @@ sed -i '' -e 's/|----------|------------|/|:--------:|:----------:|/g' README.md
 # center elements in OS table in README.md physically
 sed -i '' -e 's/| O        | O          |/|     O    |      O     |/g' README.md
 sed -i '' -e 's/| X        | ?          |/|     X    |      ?     |/g' README.md
+
+# change file links
+sed -i '' -e 's/Documentation\/org/Documentation/g' README.md
+sed -i '' -e 's/BookmarkManager.org/BookmarkManager.md/g' README.md
