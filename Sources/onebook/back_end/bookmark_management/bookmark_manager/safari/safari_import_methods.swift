@@ -22,16 +22,8 @@ extension BookmarkManager {
             return data
         }
 
-        // TODO: add dates in bookmark files
-        // TODO: add recursive method to go create all folders and files
         public func storeBookmarks(_ bookmarksData: SafariChildren?, storeAt storageDirectory: String) {
             let fileManager = FileManager.default
-
-            // let bookmarks = bookmarksData.Children![1...]
-
-            // var foldersArray: [SafariChildren] = []
-            // var nestedFoldersArray: [SafariChildren] = []
-            // var bookmarksArray: [SafariChildren] = []
 
             func createFolder(at folderPath: String) throws {
                 try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false)
