@@ -20,7 +20,7 @@ struct BookmarkManager {
 
         let bookmarkContents = Data("""
         url = \(String(describing: siteURLasURL!))
-        date_added = \(Date().timeIntervalSince1970)
+        date_added = \(String(Date().timeIntervalSince1970).replacingOccurrences(of: ".", with: ""))
         guid = \(UUID().uuidString)
         """.utf8)
 
