@@ -12,11 +12,16 @@ extension Onebook {
                 "The name and location of the bookmark you'll be adding.",
                 discussion: "Format as /folder_one/folder_two/bookmark_name",
                 valueName: "bookmark-path"))
-        var bookmark: String = ""
+        var bookmarkPath: String = ""
+        @Argument(
+            help: ArgumentHelp(
+                "The URL of the site to be stored in the bookmark.",
+                valueName: "website-url"))
+        var siteURL: String = ""
 
         mutating func run() {
             let bookmarkManager = BookmarkManager()
-            bookmarkManager.create(nil, siteURL: nil)
+            bookmarkManager.create(bookmarkPath, siteURL: siteURL)
         }
     }
 }

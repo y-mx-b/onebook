@@ -5,27 +5,33 @@ struct BookmarkManager {
     var bookmarksFilePath: String?
     var storageDirectory = "\(NSHomeDirectory())/.bookmarks/"
 
-    func check(_ bookmarkPath: String?) -> Bool? {
-        // true = file exists
-        // false = folder,  not file,
-        // nil = no file, no folder, or error
-        guard let input = bookmarkPath else { return nil }
+    func create(_ bookmarkPath: String, siteURL: String) -> Bool? {
+        // TODO: make the method safer
+        // - Don't overwrite existing files
+        // - Check to make sure a folder of the same name doesn't exist
+        // - Check to make sure the URL is valid
+        //   - If it isn't, ask for confirmation
 
         let fileManager = FileManager.default
 
-        if fileManager.fileExists(atPath: bookmarkPath!) {
-            var unsafeFalse: ObjCBool = false
-            if fileManager.fileExists(atPath: bookmarkPath!, isDirectory: &unsafeFalse) { return(true) }
-        } else { return(false) }
-        return(nil)
+        let fullPath = (storageDirectory + bookmarkPath).replacingOccurrences(of: "//", with: "/")
+        let directoryPath = fullPath.components(separatedBy: "/").dropLast(1).joined(separator: "/")
+        let siteURLasURL = URL(string: siteURL)
+
+        let bookmarkContents = Data("""
+        url = \(String(describing: siteURLasURL!))
+        date_added = \(Date().timeIntervalSince1970)
+        guid = \(UUID().uuidString)
+        """.utf8)
+
+        try! fileManager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true)
+        if fileManager.createFile(atPath: fullPath, contents: bookmarkContents) {
+            return true
+        } else { return false }
     }
 
-    func create(_ bookmarkPath: String?, siteURL: URL?) {
-        // TODO: add bookmarks
-        // - create intermediate folders (if neccessary)
-        // - create bookmark file
-        // - create new GUID, date
-        // - insert necessary information into bookmark file
+    func edit() {
+        // TODO: allow for editing bookmarks with $EDITOR
     }
 
     func move(_ originalPath: String?, to newPath: String?) {
