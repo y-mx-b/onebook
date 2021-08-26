@@ -6,7 +6,9 @@ struct BookmarkManager {
     var storageDirectory = "\(NSHomeDirectory())/.bookmarks/"
 
     func check(_ bookmarkPath: String?) throws -> Bool? {
-        // TODO check for the existence of a file
+        // true = file exists
+        // false = folder,  not file,
+        // nil = no file, no folder, or error
         guard let input = bookmarkPath else { return nil }
 
         let fileManager = FileManager.default
