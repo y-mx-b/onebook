@@ -47,7 +47,7 @@ extension BookmarkManager {
     }
 
     func move(_ originalPath: String?, to newPath: String?) {
-        // TODO: check if file or folder, move accordingly
+        // TODO check if already existing, move files accordingly
     }
 
     func clean() {
