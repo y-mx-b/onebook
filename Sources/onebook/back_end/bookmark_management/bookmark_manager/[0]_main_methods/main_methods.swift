@@ -27,18 +27,26 @@ extension BookmarkManager {
         } else { return false }
     }
 
+    func remove(_ bookmarkPath: String) -> Bool {
+        // TODO: remove bookmarks
+        // remove files
+        let fileManager = FileManager.default
+
+        let fullPath = (storageDirectory + bookmarkPath).replacingOccurrences(of: "//", with: "/")
+        do {
+            try fileManager.removeItem(atPath: fullPath)
+            return true
+        } catch {
+            return false
+        }
+    }
+
     func edit() {
         // TODO: allow for editing bookmarks with $EDITOR
     }
 
     func move(_ originalPath: String?, to newPath: String?) {
         // TODO: check if file or folder, move accordingly
-    }
-
-    func remove(_ bookmarkPath: String?) {
-        // TODO: remove bookmarks
-        // remove files
-        // if folder is empty, ask to remove
     }
 
     func clean() {
