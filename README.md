@@ -171,6 +171,9 @@ To display the help message:
 -   [ ] Exporting bookmarks
 -   [ ] Syncing bookmarks
 -   [ ] [Configuration](#configuration)\\/Programmability (perhaps use
+    JavaScript for configuration?)
+
+1.  Importing
 
     -   [x] Chromium
         -   [x] Implement Chromium bookmark parsing

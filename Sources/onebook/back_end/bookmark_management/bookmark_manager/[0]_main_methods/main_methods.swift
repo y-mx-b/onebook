@@ -1,8 +1,7 @@
 import Foundation
 
 extension BookmarkManager {
-
-    func create(_ bookmarkPath: String, siteURL: String) -> Bool? {
+    func create(_ bookmarkPath: String, siteURL: String) -> Bool {
         // TODO: make the method safer
         // - Don't overwrite existing files
         // - Check to make sure a folder of the same name doesn't exist

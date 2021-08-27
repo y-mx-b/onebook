@@ -36,18 +36,22 @@ Onebook. Has a default value of `"\(NSHomeDirectory())/.bookmarks/"`.
 ### create
 
 ``` swift
-func create(_ bookmarkPath : String, siteURL : String) {...}
+func create(_ bookmarkPath : String, siteURL : String) -> Bool {...}
 ```
 
 A function used to create bookmarks. Functional, but needs improving.
+Returns true if the bookmark is successfully created, false if the
+operation failed.
 
 ### remove
 
 ``` swift
-func remove() {...}
+func remove(_ bookmarkPath: String) -> Bool {...}
 ```
 
-A function used to remove bookmarks.
+A function used to remove bookmarks. Functional, but needs improving.
+Returns true if the bookmark is successfully created, false if the
+operation failed.
 
 ### clean
 
@@ -55,7 +59,7 @@ A function used to remove bookmarks.
 func clean() {...}
 ```
 
-A function used to remove empty bookmark folders.
+A function used to remove empty bookmark folders. Not yet implemented.
 
 ### sync
 
@@ -63,7 +67,8 @@ A function used to remove empty bookmark folders.
 func sync() {...}
 ```
 
-A function used to sync browser bookmarks with Onebook's bookmarks.
+A function used to sync browser bookmarks with Onebook's bookmarks. Not
+yet implemented.
 
 ## Extensions
 
