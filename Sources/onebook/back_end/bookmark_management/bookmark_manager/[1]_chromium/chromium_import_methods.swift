@@ -25,7 +25,7 @@ extension BookmarkManager {
             let bookmarkBarArray = bookmarksData!.roots.bookmark_bar.children
             let syncedArray = bookmarksData!.roots.synced.children
             let otherArray = bookmarksData!.roots.other.children
-            let masterArray = [(bookmarkBarArray, "Bookmarks Bar"), (syncedArray, "Synced"), (otherArray, "Other")]
+            let masterArray = [(bookmarkBarArray, "Bookmarks Bar"), (syncedArray, "Synced"), (otherArray, "")]
 
             func createFolder(at folderPath: String) throws {
                 try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true)
