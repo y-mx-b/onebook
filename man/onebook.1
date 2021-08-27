@@ -32,8 +32,17 @@ It uses the filesystem as a means to store the information so as to let the data
 Display the help message
 .SH COMMANDS
 .TP
+help <subcommand>
+Use this command to get extra help for a subcommand.
+.TP
 init
 Initialize the program. Create a configuration file and Onebook's storage directory, if none exist.
 .TP
 import <browser\-name>
 Import bookmarks from a browser and store them in Onebook's storage. Case\-insensitive.
+.TP
+create <bookmark-path> <website-url>
+Create a new bookmark. Format the path as "/folder one/folder two/bookmark name" with quotes.
+.TP
+remove <bookmark-path>
+Remove an existing bookmark. Format the path as "/folder one/folder two/bookmark name" with quotes.
