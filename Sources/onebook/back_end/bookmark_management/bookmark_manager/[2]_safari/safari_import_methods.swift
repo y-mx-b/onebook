@@ -48,9 +48,18 @@ extension BookmarkManager {
                         createFile(at: folderPath + item.URIDictionary!.title, bookmark: item)
                     case "WebBookmarkTypeList":
                         if item.Title != nil && item.Children != nil {
-                        folderPath = folderPath + item.Title! + "/"
-                        do { try createFolder(at: folderPath) } catch { }
-                        recursiveStorage(item.Children!, at: folderPath)
+                            var folderName: String
+                            switch item.Title! {
+                            case "com.apple.ReadingList":
+                                folderName = "Reading List"
+                            case "BookmarksBar":
+                                folderName = "Bookmarks Bar"
+                            default:
+                                folderName = item.Title!
+                            }
+                            folderPath = folderPath + folderName + "/"
+                            do { try createFolder(at: folderPath) } catch { }
+                            recursiveStorage(item.Children!, at: folderPath)
                         }
                     default:
                         print()
