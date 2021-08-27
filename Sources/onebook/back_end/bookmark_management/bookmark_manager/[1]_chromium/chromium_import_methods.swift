@@ -25,13 +25,10 @@ extension BookmarkManager {
             let bookmarkBarArray = bookmarksData!.roots.bookmark_bar.children
             let syncedArray = bookmarksData!.roots.synced.children
             let otherArray = bookmarksData!.roots.other.children
-            let masterArray = [bookmarkBarArray, syncedArray, otherArray]
-
-            // let favoritesPath = "\(storageDirectory)/Favorites"
-            // let syncedPath = "\(storageDirectory)/Synced"
+            let masterArray = [(bookmarkBarArray, "Bookmarks Bar"), (syncedArray, "Synced"), (otherArray, "Other")]
 
             func createFolder(at folderPath: String) throws {
-                try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false)
+                try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true)
             }
             func createFile(at filePath: String, bookmark: ChromiumChildren) {
                 let bookmarkData = Data("""
@@ -50,15 +47,15 @@ extension BookmarkManager {
                     if item.url != nil {
                         createFile(at: folderPath + item.name, bookmark: item)
                     } else {
-                        folderPath = folderPath + item.name + "/"
-                        do { try createFolder(at: folderPath) } catch { }
+                        folderPath = folderPath + item.name
+                        do { try createFolder(at: folderPath) } catch { print(folderPath) }
                         recursiveStorage(item.children, at: folderPath)
                     }
                 }
             }
 
-            for bookmarkArray in masterArray {
-                recursiveStorage(bookmarkArray, at: storageDirectory)
+            for item in masterArray {
+                recursiveStorage(item.0, at: (storageDirectory + item.1))
             }
         }
     }
