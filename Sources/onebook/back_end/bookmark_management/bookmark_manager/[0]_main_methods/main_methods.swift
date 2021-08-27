@@ -28,8 +28,6 @@ extension BookmarkManager {
     }
 
     func remove(_ bookmarkPath: String) -> Bool {
-        // TODO: remove bookmarks
-        // remove files
         let fileManager = FileManager.default
 
         let fullPath = (storageDirectory + bookmarkPath).replacingOccurrences(of: "//", with: "/")
@@ -41,8 +39,11 @@ extension BookmarkManager {
         }
     }
 
-    func edit() {
+    func edit(_ bookmarkPath: String) -> Bool {
         // TODO: allow for editing bookmarks with $EDITOR
+        let fileManager = FileManager.default
+        let fullPath = (storageDirectory + bookmarkPath).replacingOccurrences(of: "//", with: "/")
+        return false
     }
 
     func move(_ originalPath: String?, to newPath: String?) {
