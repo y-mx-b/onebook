@@ -4,7 +4,7 @@ extension BookmarkManager {
     func create(_ bookmarkPath: String, siteURL: String) -> Bool {
         // TODO: make the method safer
         // - Don't overwrite existing files
-        // - Check to make sure a folder of the same name doesn't exist
+            // - Check to make sure a folder of the same name doesn't exist
         // - Check to make sure the URL is valid
         //   - If it isn't, ask for confirmation
 
@@ -27,6 +27,7 @@ extension BookmarkManager {
     }
 
     func remove(_ bookmarkPath: String) -> Bool {
+        // TODO: add in checks, configurable confirmation
         let fileManager = FileManager.default
 
         let fullPath = (storageDirectory + bookmarkPath).replacingOccurrences(of: "//", with: "/")
