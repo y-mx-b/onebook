@@ -52,6 +52,10 @@ extension BookmarkManager {
 
     func clean() {
         // TODO: remove empty bookmark folders
+        let fileManager = FileManager.default
+        let paths = try! fileManager.subpathsOfDirectory(atPath: storageDirectory)
+        print(storageDirectory)
+        print(paths)
     }
 
     func sync(_ browsers: [String]) {
