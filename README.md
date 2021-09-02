@@ -4,8 +4,11 @@ A universal bookmark manager (heavy WIP).
 
 Current state:
 
--   Can import bookmarks from Chromium and Safari.
-    -   Nested bookmark folders are still broken on both.
+-   Can import bookmarks from Chromium and Safari (nested folders
+    working).
+    -   Haven't decided how to organize imported bookmarks for sure
+-   Can manually add and remove bookmarks
+    -   No bash/zsh completions as of yet (will be added eventually)
 
 ## Table of Contents
 
@@ -226,7 +229,7 @@ To display the help message:
 |------------------|:--------:|:----------:|
 | macOS            |     O    |      O     |
 | Ubuntu           |     O    |      O     |
-| Windows          |     X    |      ?     |
+| Windows          |     ?    |      ?     |
 
 **Note: I can't get Windows to compile for me. If anyone can, that'd be
 a great** **help.**
