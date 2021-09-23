@@ -181,7 +181,8 @@ SUBCOMMANDS:
   - In-progress, code must be refactored to handle nested folders (I forgot about those)
 - [ ] Exporting bookmarks
 - [ ] Syncing bookmarks
-- [ ] [[#configuration][Configuration]]\/Programmability (perhaps use JavaScript for configuration?)
+- [ ] Backups (for browsers and aggregate storage)
+- [ ] [[#configuration][Configuration]] (shell commands to set preferences in a plist?)
 
 **** Importing
      :PROPERTIES:
@@ -213,11 +214,11 @@ SUBCOMMANDS:
      :PROPERTIES:
      :CUSTOM_ID: configuration
      :END:
-
 - [ ] Implement config file
   - [ ] Set default browser for import/export
   - [ ] Set custom storage directory
   - [ ] Set default browsers to sync
+- [ ] Allow for relocation of bookmark directory
 
 *** Browser support
   :PROPERTIES:
@@ -232,6 +233,7 @@ SUBCOMMANDS:
 | Chrome      | O           | X         | X    |
 | Safari      | O           | X         | X    |
 | Brave       | O           | X         | X    |
+| Edge        | X           | X         | X    |
 | Qutebrowser | X           | X         | X    |
 | Firefox     | X           | X         | X    |
 | Min         | X           | X         | X    |

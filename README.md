@@ -173,8 +173,9 @@ To display the help message:
         forgot about those)
 -   [ ] Exporting bookmarks
 -   [ ] Syncing bookmarks
--   [ ] [Configuration](#configuration)\\/Programmability (perhaps use
-    JavaScript for configuration?)
+-   [ ] Backups (for browsers and aggregate storage)
+-   [ ] [Configuration](#configuration) (shell commands to set
+    preferences in a plist?)
 
 1.  Importing
 
@@ -206,6 +207,7 @@ To display the help message:
         -   [ ] Set default browser for import/export
         -   [ ] Set custom storage directory
         -   [ ] Set default browsers to sync
+    -   [ ] Allow for relocation of bookmark directory
 
 ### Browser support
 
@@ -217,6 +219,7 @@ To display the help message:
 | Chrome      |      O      |     X     |   X  |
 | Safari      |      O      |     X     |   X  |
 | Brave       |      O      |     X     |   X  |
+| Edge        |      X      |     X     |   X  |
 | Qutebrowser |      X      |     X     |   X  |
 | Firefox     |      X      |     X     |   X  |
 | Min         |      X      |     X     |   X  |
