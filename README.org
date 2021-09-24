@@ -163,7 +163,7 @@ SUBCOMMANDS:
   :PROPERTIES:
   :CUSTOM_ID: documentation
   :END:
-- [X] [[./Documentation/org/Bookmark Manager/BookmarkManager.org][Back-End]]
+- [X] [[https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/BookmarkManager.md][Back-End]]
   - Very much in-progress, nowhere near complete
 - [X] Manpage
   - Will write a script to automatically install it
