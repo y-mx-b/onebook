@@ -72,12 +72,12 @@ yet implemented.
 
 ## Extensions
 
-### [ChromiumBookmarkManager](./Extensions/Chromium/ChromiumBookmarkManager.org)
+### [ChromiumBookmarkManager](https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/Extensions/Chromium/ChromiumBookmarkManager.md)
 
 A struct containing properties and methods specificically related to
 Chromium/Chrome bookmarks.
 
-### [SafariBookmarkManager](./Extensions/Safari/SafariBookmarkManager.org)
+### [SafariBookmarkManager](https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/Extensions/Safari/SafariBookmarkManager.md)
 
 A struct containing properties and methods specificically related to
 Safari bookmarks

@@ -100,12 +100,12 @@ A function used to sync browser bookmarks with Onebook's bookmarks. Not yet impl
   :PROPERTIES:
   :CUSTOM_ID: extensions
   :END:
-*** [[./Extensions/Chromium/ChromiumBookmarkManager.org][ChromiumBookmarkManager]]
+*** [[https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/Extensions/Chromium/ChromiumBookmarkManager.md][ChromiumBookmarkManager]]
 
 A struct containing properties and methods specificically related to
 Chromium/Chrome bookmarks.
 
-*** [[./Extensions/Safari/SafariBookmarkManager.org][SafariBookmarkManager]]
+*** [[https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/Extensions/Safari/SafariBookmarkManager.md][SafariBookmarkManager]]
 
 A struct containing properties and methods specificically related to
 Safari bookmarks
