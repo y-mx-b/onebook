@@ -1,17 +1,22 @@
 import Foundation
 import ArgumentParser
 
-fileprivate func createBookmarksDirectory() {
-    let dir = FileManager.default
-    let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
-    do {
-    try dir.createDirectory(atPath: bookmarksPath, withIntermediateDirectories: false, attributes: nil)
-    } catch {
-        print("ERROR: FAILED TO CREATE BOOKMARKS DIRECTORY")
+fileprivate func createConfigPrompt() {
+    print("Create configuration file?")
+    print("Y/N?", terminator: " ")
+    let input = readLine()
+    switch input!.uppercased() {
+    case "Y", "YES":
+        createConfig()
+    case "N", "NO":
+        print("Aborting.")
+    default:
+        print("ERROR: INVALID INPUT")
+        createConfigPrompt()
     }
 }
 
-fileprivate func createBookmarksDirectoryPrompt() {
+func createBookmarksDirectoryPrompt() {
     let permission = readLine()
 
     switch permission!.uppercased() {
@@ -35,19 +40,10 @@ extension Onebook {
         @OptionGroup var options: Onebook.Options
 
         mutating func run() {
-            let dir = FileManager.default
-            let bookmarksPath = "\(NSHomeDirectory())/.bookmarks"
-            var objCTrue: ObjCBool = true
+            // TODO remove hard-coded bookmarks path
+            // TODO move prompts (front-end) and checks (back-end) to separate function
 
-            if dir.fileExists(atPath: bookmarksPath, isDirectory: &objCTrue) {
-                print("Bookmarks directory found: \(bookmarksPath)")
-            } else {
-                print("Bookmarks directory not detected.")
-                print("Create bookmarks directory?")
-                print("Y/N?:", terminator: " ")
-                createBookmarksDirectoryPrompt()
-            }
-
+            checkForBookmarksDirectory()
             if checkForConfigFile().0 {
                 print("Configuration file found: \(checkForConfigFile().1)")
             } else {

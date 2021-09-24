@@ -1,54 +1,31 @@
 import Foundation
-import TOMLDecoder
+
+// TODO remove hard-coded config directory
+
+// separate back-end and front-end more
+// use throwing functions
 
 func createConfig() {
     let configFolderPath = "\(NSHomeDirectory())/.config/onebook"
     let fileManager = FileManager.default
-    let configContent = returnDefaultConfig()
     try! fileManager.createDirectory(atPath: configFolderPath, withIntermediateDirectories: true)
-    fileManager.createFile(atPath: "\(configFolderPath)/onebook.toml", contents: configContent.data(using: .utf8), attributes: nil)
-}
-
-func createConfigPrompt() {
-    print("Create configuration file?")
-    print("Y/N?", terminator: " ")
-    let input = readLine()
-    switch input!.uppercased() {
-    case "Y", "YES":
-        createConfig()
-    case "N", "NO":
-        print("Aborting.")
-    default:
-        print("ERROR: INVALID INPUT")
-        createConfigPrompt()
-    }
+    fileManager.createFile(atPath: "\(configFolderPath)/onebookrc", contents: nil, attributes: nil)
 }
 
 func checkForConfigFile() -> (Bool, String) {
-    let configPath = "\(NSHomeDirectory())/.config/onebook/onebook.toml"
+    let configPath = "\(NSHomeDirectory())/.config/onebook/onebookrc"
     return (FileManager.default.fileExists(atPath: configPath), configPath)
+    let fileState = FileManager.default.fileExists(atPath: configPath)
+    // move error message here
 }
 
-func readFromConfig(_ configData: String?) -> Config? {
-    let decoder = TOMLDecoder()
-    do {
-        let data = try decoder.decode(Config.self, from: configData ?? "")
-        return data
-    } catch {
-        print("Configuration file not detected.")
-        print("Try running `onebook init`")
-        return nil
-    }
-}
-
-func getConfigData() -> String? {
-    let configPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/.config/onebook/onebook.toml") as URL
-    // let configPath = NSURL(fileURLWithPath: "\(NSHomeDirectory())/git-dir/onebook/default_config.toml") as URL
-
-    do {
-        let contents = try String(contentsOf: configPath, encoding: .utf8)
-        return contents
-    } catch {
-        return nil
-    }
-}
+// func readFromConfig(_ configData: String?) -> Config? {
+//     do {
+//         let data = try decoder.decode(Config.self, from: configData ?? "")
+//         return data
+//     } catch {
+//         print("Configuration file not detected.")
+//         print("Try running `onebook init`")
+//         return nil
+//     }
+// }
