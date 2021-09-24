@@ -4,9 +4,8 @@ A universal bookmark manager (heavy WIP).
 
 Current state:
 
--   Can import bookmarks from Chromium and Safari (nested folders
-    working).
-    -   Haven't decided how to organize imported bookmarks for sure
+-   Can import bookmarks from some Chromium browsers and Safari (nested
+    folders working).
 -   Can manually add and remove bookmarks
     -   No bash/zsh completions as of yet (will be added eventually)
 
@@ -102,13 +101,13 @@ a single command: `onebook sync`.
 
 ## Downloading
 
-### [Mint](https://github.com/yonaskolb/Mint)
+### [Mint](https://github.com/yonaskolb/Mint) (not usable yet)
 
 Download mint and run the following command.
 
     mint install luardemin/onebook
 
-### Building From Source
+### Building From Source (recommended)
 
 **NOTE: Requires [git](https://github.com/git/git) and the [Swift
 Package Manager](https://swift.org/package-manager/).**
@@ -142,6 +141,10 @@ To display the help message:
     SUBCOMMANDS:
       import                  Import bookmarks from a browser.
       init                    Initialize the program.
+      create                  Create a new bookmark.
+      remove                  Remove a bookmark.
+      edit                    Edit a bookmark (WIP).
+      clean                   Remove empty folders.
 
       See 'onebook help <subcommand>' for detailed help.
 
@@ -171,9 +174,13 @@ To display the help message:
 -   [ ] [Importing bookmarks](#importing)
     -   In-progress, code must be refactored to handle nested folders (I
         forgot about those)
+    -   [ ] Multi-User support
 -   [ ] Exporting bookmarks
+    -   [ ] Multi-User support
 -   [ ] Syncing bookmarks
+    -   [ ] Multi-User support
 -   [ ] Backups (for browsers and aggregate storage)
+    -   [ ] Multi-User support
 -   [ ] [Configuration](#configuration) (shell commands to set
     preferences in a plist?)
 
