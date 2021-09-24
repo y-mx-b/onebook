@@ -153,7 +153,7 @@ To display the help message:
 ### Documentation
 
 -   [x]
-    [Back-End](onebook/tree/master/Documentation/Bookmark Manager/BookmarkManager.md)
+    [Back-End](https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/BookmarkManager.md)
     -   Very much in-progress, nowhere near complete
 -   [x] Manpage
     -   Will write a script to automatically install it
