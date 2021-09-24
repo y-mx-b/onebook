@@ -153,7 +153,7 @@ To display the help message:
 ### Documentation
 
 -   [x]
-    [Back-End](./Documentation/Bookmark Manager/BookmarkManager.md)
+    [Back-End](/Documentation/Bookmark Manager/BookmarkManager.md)
     -   Very much in-progress, nowhere near complete
 -   [x] Manpage
     -   Will write a script to automatically install it
