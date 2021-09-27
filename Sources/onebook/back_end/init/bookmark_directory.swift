@@ -1,4 +1,5 @@
 import Foundation
+import BookmarkParser
 
 // TODO move functionality to back-end (allow functions to throw)
 // TODO have print functions only on front-end

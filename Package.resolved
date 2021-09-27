@@ -2,11 +2,11 @@
   "object": {
     "pins": [
       {
-        "package": "BookLib",
-        "repositoryURL": "https://github.com/luardemin/BookLib",
+        "package": "BookmarkParser",
+        "repositoryURL": "https://github.com/luardemin/BookmarkParser",
         "state": {
           "branch": "master",
-          "revision": "4dec3e0c83a8d836c2c86b09b125bc2c2748d027",
+          "revision": "696847cc4d968c60db3b93fa16634c00ce83f674",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
           "branch": null,
-          "revision": "83b23d940471b313427da226196661856f6ba3e0",
-          "version": "0.4.4"
+          "revision": "6b2aa2748a7881eebb9f84fb10c01293e15b52ca",
+          "version": "0.5.0"
         }
       }
     ]

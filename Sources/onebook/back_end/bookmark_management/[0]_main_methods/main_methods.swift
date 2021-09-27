@@ -1,4 +1,5 @@
 import Foundation
+import BookmarkParser
 
 extension BookmarkManager {
     func create(_ bookmarkPath: String, siteURL: String) -> Bool {

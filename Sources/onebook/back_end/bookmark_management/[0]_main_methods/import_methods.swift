@@ -1,4 +1,5 @@
 import Foundation
+import BookmarkParser
 
 #if os(macOS)
 fileprivate let bookmarkFileArray: [String: String] = [
