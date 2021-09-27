@@ -9,6 +9,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
+        .package(url: "https://github.com/luardemin/BookLib", .branch("master")),
         // .package(url: "https://github.com/dduan/TOMLDecoder", from: "0.2.1")
     ],
     targets: [
@@ -18,6 +19,7 @@ let package = Package(
             name: "onebook",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "BookLib", package: "BookLib"),
                 // .product(name: "TOMLDecoder", package: "TOMLDecoder")
             ]),
         .testTarget(

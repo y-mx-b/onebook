@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BookLib",
+        "repositoryURL": "https://github.com/luardemin/BookLib",
+        "state": {
+          "branch": "master",
+          "revision": "4dec3e0c83a8d836c2c86b09b125bc2c2748d027",
+          "version": null
+        }
+      },
+      {
         "package": "swift-argument-parser",
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
