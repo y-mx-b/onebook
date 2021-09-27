@@ -3,7 +3,8 @@ import ArgumentParser
 
 extension Onebook {
     struct Edit: ParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Edit a bookmark (WIP).")
+        static var configuration = CommandConfiguration(
+                                    abstract: "Edit a bookmark (WIP).")
         @OptionGroup var options: Onebook.Options
         @Argument(
             help: ArgumentHelp(

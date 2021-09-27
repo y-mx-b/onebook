@@ -22,7 +22,7 @@ func createBookmarksDirectoryPrompt() {
     switch permission!.uppercased() {
     case "Y", "YES":
         print("Creating bookmarks directory...")
-        createBookmarksDirectory()
+        createBookmarksDirectory(bookmarksPath: "\(NSHomeDirectory())/.bookmarks/")
     case "N", "NO":
         print("Terminating...")
     default:
@@ -43,7 +43,7 @@ extension Onebook {
             // TODO remove hard-coded bookmarks path
             // TODO move prompts (front-end) and checks (back-end) to separate function
 
-            checkForBookmarksDirectory()
+            checkForBookmarksDirectory(bookmarksPath: "\(NSHomeDirectory())/.bookmarks/")
             if checkForConfigFile().0 {
                 print("Configuration file found: \(checkForConfigFile().1)")
             } else {

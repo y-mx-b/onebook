@@ -15,7 +15,7 @@ func createConfig() {
 func checkForConfigFile() -> (Bool, String) {
     let configPath = "\(NSHomeDirectory())/.config/onebook/onebookrc"
     return (FileManager.default.fileExists(atPath: configPath), configPath)
-    let fileState = FileManager.default.fileExists(atPath: configPath)
+    // let fileState = FileManager.default.fileExists(atPath: configPath)
     // move error message here
 }
 

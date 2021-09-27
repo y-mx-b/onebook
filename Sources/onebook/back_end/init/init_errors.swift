@@ -1,7 +1,10 @@
 enum initErrors: Error {
     // config errors
-    case createConfigFail
     case checkForConfigFileFail
+    case createConfigFail
     // bookmark directory errors
+    case checkForBookmarkDirectoryFail
+    case createBookmarkDirectoryFail
+
 }
 
