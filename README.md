@@ -4,10 +4,7 @@ A universal bookmark manager (heavy WIP).
 
 Current state:
 
--   Can import bookmarks from some Chromium browsers and Safari (nested
-    folders working).
--   Can manually add and remove bookmarks
-    -   No bash/zsh completions as of yet (will be added eventually)
+-   Being rewritten entirely
 
 ## Table of Contents
 
@@ -152,13 +149,10 @@ To display the help message:
 
 ### Documentation
 
--   [x]
-    [Back-End](https://github.com/luardemin/onebook/blob/master/Documentation/Bookmark%20Manager/BookmarkManager.md)
-    -   Very much in-progress, nowhere near complete
--   [x] Manpage
+-   [ ] Manpage
     -   Will write a script to automatically install it
     -   Someday soon
--   [x] Incredibly cryptic help message (will be expanded once more
+-   [ ] Incredibly cryptic help message (will be expanded once more
     functionality is implemented)
     -   a Unix classic, along with [beatifully uninformative error
         messages](https://www.gnu.org/fun/jokes/ed-msg.html)
@@ -166,7 +160,7 @@ To display the help message:
 ### Functionality
 
 -   [ ] Direct bookmark management (WIP)
-    -   [x] Adding bookmarks
+    -   [ ] Adding bookmarks
     -   [ ] Removing bookmarks
     -   [ ] Moving bookmarks
     -   [ ] Purging empty bookmark folders
@@ -222,10 +216,10 @@ To display the help message:
 
 | Browser     | Import From | Export To | Sync |
 |-------------|:-----------:|:---------:|:----:|
-| Chromium    |      O      |     X     |   X  |
-| Chrome      |      O      |     X     |   X  |
-| Safari      |      O      |     X     |   X  |
-| Brave       |      O      |     X     |   X  |
+| Chromium    |      X      |     X     |   X  |
+| Chrome      |      X      |     X     |   X  |
+| Safari      |      X      |     X     |   X  |
+| Brave       |      X      |     X     |   X  |
 | Edge        |      X      |     X     |   X  |
 | Qutebrowser |      X      |     X     |   X  |
 | Firefox     |      X      |     X     |   X  |
