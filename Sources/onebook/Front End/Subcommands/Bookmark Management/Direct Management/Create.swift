@@ -20,8 +20,6 @@ extension Onebook {
         var siteURL: String = ""
 
         mutating func run() {
-            let bookmarkManager = BookmarkManager()
-            bookmarkManager.create(bookmarkPath, siteURL: siteURL)
         }
     }
 }

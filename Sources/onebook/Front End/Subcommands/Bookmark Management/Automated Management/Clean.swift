@@ -8,8 +8,6 @@ extension Onebook {
         @OptionGroup var options: Onebook.Options
 
         mutating func run() {
-            let bookmarkManager = BookmarkManager()
-            bookmarkManager.clean()
         }
     }
 }

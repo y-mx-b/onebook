@@ -14,8 +14,6 @@ extension Onebook {
         var bookmarkPath: String = ""
 
         mutating func run() {
-            let bookmarkManager = BookmarkManager()
-            bookmarkManager.remove(bookmarkPath)
         }
     }
 }

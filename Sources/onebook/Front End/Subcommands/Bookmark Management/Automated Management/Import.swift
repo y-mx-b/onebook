@@ -14,10 +14,6 @@ extension Onebook {
             var browser: String = "Chrome"
 
         mutating func run() {
-            var bookmarkManager = BookmarkManager(browserName: browser)
-            if bookmarkManager.bookmarksFilePath == nil { bookmarkManager.setDefaultBookmarksPath() }
-            let bookmarks = bookmarkManager.getBookmarks()
-            bookmarkManager.storeBookmarks(bookmarks)
         }
     }
 }
