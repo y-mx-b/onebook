@@ -1,4 +1,4 @@
-enum initErrors: Error {
+enum InitErrors: Error {
     // config errors
     case checkForConfigFileFail
     case createConfigFail
