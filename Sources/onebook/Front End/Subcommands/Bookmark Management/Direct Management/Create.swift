@@ -1,6 +1,4 @@
-import Foundation
 import ArgumentParser
-import BookmarkParser
 
 extension Onebook {
     struct Create: ParsableCommand {
