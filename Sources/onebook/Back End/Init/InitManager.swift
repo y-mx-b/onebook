@@ -1,5 +1,15 @@
 import Foundation
 
+enum InitErrors: Error {
+    // config errors
+    case checkForConfigFileFail
+    case createConfigFail
+    // bookmark directory errors
+    case checkForBookmarkDirectoryFail
+    case createBookmarkDirectoryFail
+
+}
+
 fileprivate let configFileContents =
     """
     #!/bin/sh
