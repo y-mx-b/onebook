@@ -8,7 +8,9 @@ enum CleanState: String {
 
 struct Preferences: Codable {
     // NON-USER EDITABLE
+    var preferencesPath: String = "\(NSHomeDirectory())/Library/Application Support/onebook/Preferences.plist"
     var configModifiedDate: TimeInterval = 0.0
+
     // PATHS
     var storageDirectory: String = "\(NSHomeDirectory())/.bookmarks/"
     var configPath: String = "\(NSHomeDirectory())/.config/onebook/onebookrc"
