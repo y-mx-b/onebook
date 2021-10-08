@@ -50,11 +50,9 @@ struct ConfigManager {
         }
 
         let fm = FileManager.default
-        let pld = PropertyListDecoder()
         let ple = PropertyListEncoder()
 
-        let currentPreferencesData = fm.contents(atPath: Preferences().preferencesPath)
-        let currentPreferences = try! pld.decode(Preferences.self, from: currentPreferencesData!)
+        let currentPreferences = loadPreferences()
         var newPreferences = currentPreferences
 
         switch pKey {
@@ -107,5 +105,10 @@ struct ConfigManager {
         let newPreferencesData = try! ple.encode(newPreferences)
         try! fm.removeItem(atPath: Preferences().preferencesPath)
         fm.createFile(atPath: Preferences().preferencesPath, contents: newPreferencesData, attributes: nil)
+    }
+
+    func loadPreferences() -> Preferences {
+        let preferencesData = FileManager.default.contents(atPath: Preferences().preferencesPath)
+        return try! PropertyListDecoder().decode(Preferences.self, from: preferencesData!)
     }
 }
