@@ -1,4 +1,35 @@
+import Foundation
 import ArgumentParser
+
+extension ConfigError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        // KEY
+        case .invalidKey(let key):
+            return """
+                    Invalid key was supplied: "\(key)".
+                    """
+        // VALUES
+        case .notBool(let bool):
+            return """
+                    Invalid value was supplied: "\(bool)".
+                    Expected: "on" or "off".
+                    """
+        case .invalidBrowser(let browser):
+            return """
+                    Invalid value was supplied: "\(browser)" is not a valid browser.
+                    """
+        case .invalidFormatType(let format):
+            return """
+                    Invalid value was supplied: "\(format)" is not a valid format.
+                    """
+        case .generic(let value):
+            return """
+                    Invalid value was supplied: "\(value)".
+                    """
+        }
+    }
+}
 
 extension Onebook {
     struct Set: ParsableCommand {
@@ -22,25 +53,8 @@ extension Onebook {
             let cm = ConfigManager()
             do {
                 try cm.set(preferenceKey, value: newValue)
-                print("Operation successful.")
-            } catch ConfigError.invalidKey {
-                print("Operation failed.")
-                print("An invalid setting was specified.")
-            } catch ConfigError.InvalidValue.notBool {
-                print("Operation failed.")
-                print("An invalid value was specified. Please use on/off.")
-            } catch ConfigError.InvalidValue.invalidBrowser {
-                print("Operation failed.")
-                print("An invalid browser was specified.")
-            } catch ConfigError.InvalidValue.invalidFormatType {
-                print("Operation failed.")
-                print("An invalid format type was specified.")
-            } catch ConfigError.InvalidValue.generic {
-                print("Operation failed.")
-                print("An invalid value was specified.")
             } catch {
-                print("Operation failed.")
-                print("An unexpected error has occured.")
+                print(error.localizedDescription)
             }
         }
     }

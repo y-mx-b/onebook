@@ -2,14 +2,13 @@ import Foundation
 import BookmarkParser
 
 enum ConfigError: Error {
-    case unknownError
-    case invalidKey
-    enum InvalidValue: Error {
-        case notBool
-        case invalidBrowser
-        case invalidFormatType
-        case generic
-    }
+    // KEY ERRORS
+    case invalidKey(String)
+    // VALUE ERRORS
+    case notBool(String)
+    case invalidBrowser(String)
+    case invalidFormatType(String)
+    case generic(String)
 }
 
 fileprivate func checkIfBool(_ value: String) throws -> Bool {
@@ -19,7 +18,7 @@ fileprivate func checkIfBool(_ value: String) throws -> Bool {
     case "off":
         return false
     default:
-        throw ConfigError.InvalidValue.notBool
+        throw ConfigError.notBool(value)
     }
 }
 
@@ -27,7 +26,7 @@ fileprivate func checkBrowsers(_ value: String) throws -> [String] {
     let browsers = value.lowercased().components(separatedBy: " ")
     for browser in browsers {
         guard let _ = Browser(rawValue: browser) else {
-            throw ConfigError.InvalidValue.invalidBrowser
+            throw ConfigError.invalidBrowser(value)
         }
     }
     return browsers
@@ -37,16 +36,17 @@ fileprivate func checkFormatTypes(_ value: String) throws -> [String] {
     let formats = value.lowercased().components(separatedBy: " ")
     for format in formats {
         guard let _ = FormatTypes(rawValue: format) else {
-            throw ConfigError.InvalidValue.invalidFormatType
+            throw ConfigError.invalidFormatType(value)
         }
     }
     return formats
 }
 
 struct ConfigManager {
+
     func set(_ key: String?, value: String?) throws {
         guard let pKey = PreferenceKeys(rawValue: key!) else {
-            throw ConfigError.invalidKey
+            throw ConfigError.invalidKey(value!)
         }
 
         let fm = FileManager.default
@@ -75,7 +75,7 @@ struct ConfigManager {
             let cleanPreferences: Set = Set(value!.lowercased().components(separatedBy: ","))
 
             guard cleanPreferences.isSubset(of: allCleanPreferences) else {
-                throw ConfigError.InvalidValue.generic
+                throw ConfigError.generic(value!)
             }
 
             if cleanPreferences.contains("f") {

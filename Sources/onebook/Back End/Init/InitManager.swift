@@ -1,5 +1,14 @@
 import Foundation
 
+fileprivate let configFileContents =
+    """
+    #!/bin/sh
+
+    ##### ONEBOOK CONFIGURATION FILE #####
+
+    # Any valid shell commands can be run
+    """.data(using: .utf8)
+
 struct InitManager {
     // CHECKS
     func checkForConfigFile(_ configPath: String) -> Bool {
@@ -18,12 +27,9 @@ struct InitManager {
         return fm.fileExists(atPath: preferences.preferencesPath)
     }
 
-
     // CREATE
     func createConfigFile(_ configPath: String) -> Bool {
         let fm = FileManager.default
-
-        let contents = "#!/bin/sh\n".data(using: .utf8)
 
         var attributes = [FileAttributeKey : Any]()
         attributes[.posixPermissions] = 0o755
@@ -32,10 +38,10 @@ struct InitManager {
         _ = pathArray.popLast()
         let directoryPath = pathArray.joined(separator: "/")
 
-        if !fm.createFile(atPath: configPath, contents: contents, attributes: attributes) {
+        if !fm.createFile(atPath: configPath, contents: configFileContents, attributes: attributes) {
             do {
                 try fm.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
-                fm.createFile(atPath: configPath, contents: contents, attributes: attributes)
+                fm.createFile(atPath: configPath, contents: configFileContents, attributes: attributes)
                 return true
             } catch {
                 return false
