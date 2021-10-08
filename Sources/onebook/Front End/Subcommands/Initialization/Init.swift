@@ -1,7 +1,7 @@
 import Foundation
 import ArgumentParser
 
-fileprivate func createNewItemPrompt() -> Bool? {
+fileprivate func prompt() -> Bool? {
     print("(Y/N) : ", terminator: "")
     let response = readLine()
     switch response {
@@ -11,7 +11,7 @@ fileprivate func createNewItemPrompt() -> Bool? {
         return false
     default:
         print("\nInvalid response.\n")
-        return createNewItemPrompt()
+        return prompt()
     }
 }
 
@@ -25,33 +25,80 @@ extension Onebook {
             let preferences: Preferences = Preferences()
 
             print("Initializing onebook...")
+            print()
+
             // RUN CHECKS
             let im = InitManager()
 
+            // user preferences plist
+            if !im.checkForPreferencesFile() {
+                print("Preferences file not found.")
+                print("Creating new preferences file...")
+                if im.createPreferencesFile() {
+                    print("Operation successful.")
+                } else {
+                    print("Operation failed.")
+                }
+            } else {
+                print("Preferences file located.")
+                print("Overwrite preferences file?")
+                if prompt()! {
+                    try! FileManager.default.removeItem(atPath: preferences.preferencesPath)
+                    if im.createPreferencesFile() {
+                        print("Operation successful.")
+                    } else {
+                        print("Operation failed.")
+                    }
+                } else {
+                    print("Aborting...")
+                }
+            }
+            print()
+
+            // config file
             if !im.checkForConfigFile(preferences.configPath) {
                 print("Configuration file not found.")
                 print("Create new configuration file?")
-                let response = createNewItemPrompt()
-                if response! {
-                    print("Yes.")
+                if prompt()! {
+                    print("Creating cofig file...")
+                    if im.createConfigFile(preferences.configPath) {
+                        print("Successful.")
+                    } else {
+                        print("Operation failed.")
+                    }
                     print()
                 } else {
-                    print("No.")
-                    print()
+                    print("Would you like to disable configuration file reading?")
+                    if prompt()! {
+                        print("Disabling configuration file... (except I haven't implemented that yet.)")
+                    } else {
+                        print("What a fool.")
+                    }
+                }
+            } else {
+                print("Configuration file exists.")
+                print("Overwrite configuration file?")
+                if prompt()! {
+                    try! FileManager.default.removeItem(atPath: preferences.configPath)
+                    if im.createConfigFile(preferences.configPath) {
+                        print("Operation successful.")
+                    } else {
+                        print("An error has occurred.")
+                    }
+                } else {
+                    print("Aborting...")
                 }
             }
+            print()
 
+            // storage directory
             if !im.checkForStorageDirectory(preferences.storageDirectory) {
                 print("Storage directory not found.")
-                print("Create new storage directory?")
-                let response = createNewItemPrompt()
-                if response! {
-                    print("Yes.")
-                    print()
-                } else {
-                    print("No.")
-                    print()
-                }
+                print("Creating new storage directory...")
+                im.createStorageDirectory(preferences.storageDirectory)
+            } else {
+                print("Storage directory exists.")
+                print("Aborting.")
             }
         }
     }
