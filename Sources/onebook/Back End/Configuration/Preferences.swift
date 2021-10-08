@@ -18,7 +18,7 @@ struct Preferences: Codable {
 
     // SETTINGS
     var configState: Bool = true
-    var editor: String = "vim"
+    var editor: String = ProcessInfo.processInfo.environment["EDITOR"]!
     var importDefault: [String] = [Browser.chrome.rawValue]
     var cleanPreferences: [String : Bool] = [CleanState.emptyFolders.rawValue : false,
                                             CleanState.emptyBookmarks.rawValue : true]
