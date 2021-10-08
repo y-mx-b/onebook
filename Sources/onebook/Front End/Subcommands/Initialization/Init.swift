@@ -30,7 +30,7 @@ extension Onebook {
             // RUN CHECKS
             let im = InitManager()
 
-            // user preferences plist
+            // PREFERNCES FILE
             if !im.checkForPreferencesFile() {
                 print("Preferences file not found.")
                 print("Creating new preferences file...")
@@ -55,7 +55,7 @@ extension Onebook {
             }
             print()
 
-            // config file
+            // CONFIG FILE
             if !im.checkForConfigFile(preferences.configPath) {
                 print("Configuration file not found.")
                 print("Create new configuration file?")
@@ -70,9 +70,8 @@ extension Onebook {
                 } else {
                     print("Would you like to disable configuration file reading?")
                     if prompt()! {
-                        print("Disabling configuration file... (except I haven't implemented that yet.)")
-                    } else {
-                        print("What a fool.")
+                        print("Disabling configuration file...")
+                        try! ConfigManager().set("config", value: "off")
                     }
                 }
             } else {
@@ -91,11 +90,11 @@ extension Onebook {
             }
             print()
 
-            // storage directory
+            // STORAGE DIRECTORY
             if !im.checkForStorageDirectory(preferences.storageDirectory) {
                 print("Storage directory not found.")
                 print("Creating new storage directory...")
-                im.createStorageDirectory(preferences.storageDirectory)
+                _ = im.createStorageDirectory(preferences.storageDirectory)
             } else {
                 print("Storage directory exists.")
                 print("Aborting.")

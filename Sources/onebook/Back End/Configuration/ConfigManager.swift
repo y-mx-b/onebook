@@ -111,4 +111,11 @@ struct ConfigManager {
         let preferencesData = FileManager.default.contents(atPath: Preferences().preferencesPath)
         return try! PropertyListDecoder().decode(Preferences.self, from: preferencesData!)
     }
+
+    func runConfig() {
+        let task = Process()
+        let preferences = loadPreferences()
+        task.executableURL = URL(fileURLWithPath: preferences.configPath)
+        try! task.run()
+    }
 }

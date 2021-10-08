@@ -23,14 +23,19 @@ struct InitManager {
     func createConfigFile(_ configPath: String) -> Bool {
         let fm = FileManager.default
 
+        let contents = "#!/bin/sh\n".data(using: .utf8)
+
+        var attributes = [FileAttributeKey : Any]()
+        attributes[.posixPermissions] = 0o755
+
         var pathArray = configPath.components(separatedBy: "/")
-        pathArray.popLast()
+        _ = pathArray.popLast()
         let directoryPath = pathArray.joined(separator: "/")
 
-        if !fm.createFile(atPath: configPath, contents: nil, attributes: nil) {
+        if !fm.createFile(atPath: configPath, contents: contents, attributes: attributes) {
             do {
                 try fm.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
-                fm.createFile(atPath: configPath, contents: nil, attributes: nil)
+                fm.createFile(atPath: configPath, contents: contents, attributes: attributes)
                 return true
             } catch {
                 return false
@@ -53,11 +58,16 @@ struct InitManager {
 
     func createPreferencesFile() -> Bool {
         let fm = FileManager.default
-        let preferences = Preferences()
+        var preferences = Preferences()
+
+        if checkForConfigFile(preferences.configPath) {
+            preferences.configModifiedDate = preferences.configModifiedDateCalc
+        }
+
         let preferencesData = try! PropertyListEncoder().encode(preferences)
 
         var pathArray = preferences.preferencesPath.components(separatedBy: "/")
-        pathArray.popLast()
+        _ = pathArray.popLast()
         let directoryPath = pathArray.joined(separator: "/")
 
         if !fm.createFile(atPath: preferences.preferencesPath, contents: preferencesData, attributes: nil) {

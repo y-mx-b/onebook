@@ -28,7 +28,16 @@ enum PreferenceKeys: String {
 struct Preferences: Codable {
     // NON-USER EDITABLE
     var preferencesPath: String = "\(NSHomeDirectory())/Library/Application Support/onebook/Preferences.plist"
-    var configModifiedDate: TimeInterval = 0.0
+    var configModifiedDateCalc: TimeInterval? {
+        if InitManager().checkForConfigFile(configPath) {
+            return try! URL(fileURLWithPath: configPath)
+                            .resourceValues(forKeys: [URLResourceKey.contentModificationDateKey])
+                            .contentModificationDate?.timeIntervalSince1970
+        } else {
+            return 0.0
+        }
+    }
+    var configModifiedDate: TimeInterval? = 0.0
 
     // PATHS
     var storageDirectory: String = "\(NSHomeDirectory())/.bookmarks/"
