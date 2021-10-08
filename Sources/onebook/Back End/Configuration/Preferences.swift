@@ -6,6 +6,25 @@ enum CleanState: String {
     case emptyBookmarks
 }
 
+enum PreferenceKeys: String {
+    // PATHS
+    case storageDirectory = "storage"
+    case configPath = "config-path"
+
+    // SETTINGS
+    case configState = "config"
+    case editor
+    case importDefault = "import"
+    case cleanPreferences = "clean"
+    case syncDefault = "sync"
+    case exportDefault = "export"
+    case readingList = "reading-list"
+    case debug
+
+    // Fun
+    case progressBar = "progress-bar"
+}
+
 struct Preferences: Codable {
     // NON-USER EDITABLE
     var preferencesPath: String = "\(NSHomeDirectory())/Library/Application Support/onebook/Preferences.plist"
