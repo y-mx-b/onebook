@@ -60,8 +60,13 @@ extension Onebook {
             // PREFERENCE CHECKS
             do {
                 if try im.checkForPreferencesFile() {
+                    print("Preferences file found.")
                     let preferencesData = fm.contents(atPath: preferencesPath)
                     preferences = try! PropertyListDecoder().decode(Preferences.self, from: preferencesData!)
+                } else {
+                    print("Preferences file was empty.")
+                    print("Overwriting preferences file...")
+                    let _ = im.createPreferencesFile()
                 }
             } catch {
                 print(error.localizedDescription)
@@ -97,6 +102,7 @@ extension Onebook {
             // STORAGE CHECKS
             do {
                 let _ = try im.checkForStorageDirectory(preferences.storageDirectory)
+                print("Storage directory found.")
             } catch {
                 print(error.localizedDescription)
                 print("Creating storage directory...")

@@ -52,7 +52,7 @@ struct ConfigManager {
         let fm = FileManager.default
         let ple = PropertyListEncoder()
 
-        let currentPreferences = loadPreferences()
+        let currentPreferences = try loadPreferences()
         var newPreferences = currentPreferences
 
         switch pKey {
@@ -107,14 +107,16 @@ struct ConfigManager {
         fm.createFile(atPath: Preferences().preferencesPath, contents: newPreferencesData, attributes: nil)
     }
 
-    func loadPreferences() -> Preferences {
-        let preferencesData = FileManager.default.contents(atPath: Preferences().preferencesPath)
-        return try! PropertyListDecoder().decode(Preferences.self, from: preferencesData!)
+    func loadPreferences() throws -> Preferences {
+        let preferencesPath = Preferences().preferencesPath
+        guard let preferencesData = FileManager.default.contents(atPath: preferencesPath)
+            else { throw InitErrors.noPreferences(preferencesPath) }
+        return try! PropertyListDecoder().decode(Preferences.self, from: preferencesData)
     }
 
-    func runConfig() {
+    func runConfig() throws {
         let task = Process()
-        let preferences = loadPreferences()
+        let preferences = try loadPreferences()
         task.executableURL = URL(fileURLWithPath: preferences.configPath)
         try! task.run()
     }
