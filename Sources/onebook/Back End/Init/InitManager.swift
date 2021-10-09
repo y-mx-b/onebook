@@ -82,8 +82,11 @@ struct InitManager {
         let fm = FileManager.default
         var preferences = Preferences()
 
-        if checkForConfigFile(preferences.configPath) {
-            preferences.configModifiedDate = preferences.configModifiedDateCalc
+        do {
+            if try checkForConfigFile(preferences.configPath) {
+                preferences.configModifiedDate = preferences.configModifiedDateCalc
+            }
+        } catch {
         }
 
         let preferencesData = try! PropertyListEncoder().encode(preferences)
