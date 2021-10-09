@@ -18,20 +18,29 @@ fileprivate let configFileContents =
 
 struct InitManager {
     // CHECKS
-    func checkForConfigFile(_ configPath: String) -> Bool {
+    // NO ITEM -> ERROR
+    // ITEM EMPTY -> FALSE
+    // -> TRUE
+    func checkForPreferencesFile() throws -> Bool {
         let fm = FileManager.default
-        return fm.fileExists(atPath: configPath)
+        let preferencesPath = Preferences().preferencesPath
+        guard fm.fileExists(atPath: preferencesPath) else { throw InitErrors.noPreferences }
+        guard let _ = fm.contents(atPath: preferencesPath) else { return false }
+        return true
     }
 
-    func checkForStorageDirectory(_ storageDirectory: String) -> Bool {
+    func checkForConfigFile(_ configPath: String) throws -> Bool {
         let fm = FileManager.default
-        return fm.fileExists(atPath: storageDirectory)
+        guard fm.fileExists(atPath: configPath) else { throw InitErrors.noConfig }
+        guard let _ = fm.contents(atPath: configPath) else { return false }
+        return true
     }
 
-    func checkForPreferencesFile() -> Bool {
+    func checkForStorageDirectory(_ storageDirectory: String) throws -> Bool {
         let fm = FileManager.default
-        let preferences = Preferences()
-        return fm.fileExists(atPath: preferences.preferencesPath)
+        guard fm.fileExists(atPath: storageDirectory) else { throw InitErrors.noStorage }
+        guard let _ = fm.contents(atPath: storageDirectory) else { return false }
+        return true
     }
 
     // CREATE
