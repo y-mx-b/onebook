@@ -1,13 +1,10 @@
 import Foundation
 
 enum InitErrors: Error {
-    // config errors
-    case checkForConfigFileFail
-    case createConfigFail
-    // bookmark directory errors
-    case checkForBookmarkDirectoryFail
-    case createBookmarkDirectoryFail
-
+    // NO ITEM AT PATH
+    case noPreferences
+    case noConfig
+    case noStorage
 }
 
 fileprivate let configFileContents =
