@@ -2,9 +2,9 @@ import Foundation
 
 enum InitErrors: Error {
     // NO ITEM AT PATH
-    case noPreferences
-    case noConfig
-    case noStorage
+    case noPreferences(String)
+    case noConfig(String)
+    case noStorage(String)
 }
 
 fileprivate let configFileContents =
@@ -24,21 +24,21 @@ struct InitManager {
     func checkForPreferencesFile() throws -> Bool {
         let fm = FileManager.default
         let preferencesPath = Preferences().preferencesPath
-        guard fm.fileExists(atPath: preferencesPath) else { throw InitErrors.noPreferences }
+        guard fm.fileExists(atPath: preferencesPath) else { throw InitErrors.noPreferences(preferencesPath) }
         guard let _ = fm.contents(atPath: preferencesPath) else { return false }
         return true
     }
 
     func checkForConfigFile(_ configPath: String) throws -> Bool {
         let fm = FileManager.default
-        guard fm.fileExists(atPath: configPath) else { throw InitErrors.noConfig }
+        guard fm.fileExists(atPath: configPath) else { throw InitErrors.noConfig(configPath) }
         guard let _ = fm.contents(atPath: configPath) else { return false }
         return true
     }
 
     func checkForStorageDirectory(_ storageDirectory: String) throws -> Bool {
         let fm = FileManager.default
-        guard fm.fileExists(atPath: storageDirectory) else { throw InitErrors.noStorage }
+        guard fm.fileExists(atPath: storageDirectory) else { throw InitErrors.noStorage(storageDirectory) }
         guard let _ = fm.contents(atPath: storageDirectory) else { return false }
         return true
     }

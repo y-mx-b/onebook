@@ -47,7 +47,7 @@ extension Onebook {
                 help: ArgumentHelp(
                     "The new value to set the preference to.",
                     valueName: "new-value"))
-                var newValue: String
+            var newValue: String
 
         mutating func run() {
             let cm = ConfigManager()

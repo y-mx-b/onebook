@@ -1,7 +1,7 @@
 import Foundation
 import ArgumentParser
 
-fileprivate func prompt() -> Bool? {
+fileprivate func prompt() -> Bool {
     print("(Y/N) : ", terminator: "")
     let response = readLine()
     switch response {
@@ -15,7 +15,27 @@ fileprivate func prompt() -> Bool? {
     }
 }
 
-
+extension InitErrors: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .noPreferences(let path):
+            return """
+            Preferences file not found.
+            Expected preferences file at: \(path)
+            """
+        case .noConfig(let path):
+            return """
+            Configuration file not found.
+            Expected configuration file at: \(path)
+            """
+        case .noStorage(let path):
+            return """
+            Storage directory not found.
+            Expected storage directory at : \(path)
+            """
+        }
+    }
+}
 
 extension Onebook {
     struct Init: ParsableCommand {
@@ -24,15 +44,66 @@ extension Onebook {
         @OptionGroup var options: Onebook.Options
 
         mutating func run() {
-            var preferences: Preferences = Preferences()
-
             let im = InitManager()
-
+            let fm = FileManager.default
+            var preferences = Preferences()
+            let preferencesPath = preferences.preferencesPath
             // TODO RUN CHECKS
             //     TODO PREFERENCES
             //         if exists -> load preferences
+            //         else -> create
             //     TODO CONFIG
+            //         if exists -> overwrite? -> yes, no
             //     TODO STORAGE
+            //         if not exist -> create
+
+            // PREFERENCE CHECKS
+            do {
+                if try im.checkForPreferencesFile() {
+                    let preferencesData = fm.contents(atPath: preferencesPath)
+                    preferences = try! PropertyListDecoder().decode(Preferences.self, from: preferencesData!)
+                }
+            } catch {
+                print(error.localizedDescription)
+                print("Creating preferences file...")
+                let _ = im.createPreferencesFile()
+            }
+
+            print()
+
+            // CONFIG CHECKS
+            if preferences.configState {
+                do {
+                    if try im.checkForConfigFile(preferences.configPath) {
+                        print("Configuration file found. Overwrite?")
+                        if prompt() {
+                            let _ = im.createConfigFile(preferences.configPath)
+                        }
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    print("Create configuration file?")
+                    if prompt() {
+                        let _ = im.createConfigFile(preferences.configPath)
+                    } else {
+                        print("Disable configuration file?")
+                        if prompt() { try! ConfigManager().set("config", value: "off") }
+                    }
+                }
+            }
+
+            print()
+
+            // STORAGE CHECKS
+            do {
+                let _ = try im.checkForStorageDirectory(preferences.storageDirectory)
+            } catch {
+                print(error.localizedDescription)
+                print("Creating storage directory...")
+                let _ = im.createStorageDirectory(preferences.storageDirectory)
+            }
+
+
         }
     }
 }

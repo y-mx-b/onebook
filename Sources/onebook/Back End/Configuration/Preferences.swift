@@ -29,13 +29,16 @@ struct Preferences: Codable {
     // NON-USER EDITABLE
     var preferencesPath: String = "\(NSHomeDirectory())/Library/Application Support/onebook/Preferences.plist"
     var configModifiedDateCalc: TimeInterval? {
-        if InitManager().checkForConfigFile(configPath) {
-            return try! URL(fileURLWithPath: configPath)
-                            .resourceValues(forKeys: [URLResourceKey.contentModificationDateKey])
-                            .contentModificationDate?.timeIntervalSince1970
-        } else {
-            return 0.0
+        do {
+            if try InitManager().checkForConfigFile(configPath) {
+                return try! URL(fileURLWithPath: configPath)
+                                .resourceValues(forKeys: [URLResourceKey.contentModificationDateKey])
+                                .contentModificationDate?.timeIntervalSince1970
+            }
+        } catch {
+            print(error.localizedDescription)
         }
+        return 0.0
     }
     var configModifiedDate: TimeInterval? = 0.0
 
