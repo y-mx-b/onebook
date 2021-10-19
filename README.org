@@ -1,8 +1,0 @@
-* onebook
-  :PROPERTIES:
-  :CUSTOM_ID: onebook
-  :END:
-A universal bookmark manager (heavy WIP).
-
-Current state:
- - Being rewritten entirely
