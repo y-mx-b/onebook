@@ -108,8 +108,6 @@ extension Onebook {
                 print("Creating storage directory...")
                 let _ = im.createStorageDirectory(preferences.storageDirectory)
             }
-
-
         }
     }
 }
