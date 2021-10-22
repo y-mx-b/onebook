@@ -18,6 +18,11 @@ extension Onebook {
         var siteURL: String = ""
 
         mutating func run() {
+            do {
+                try BookmarkManager().createBookmark(at: bookmarkPath, siteURL: siteURL)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
