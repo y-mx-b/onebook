@@ -1,10 +1,18 @@
 import Foundation
 
 extension BookmarkManager {
-    func createBookmark(_ bookmarkPath: String, siteURL: String) -> Bool {
+    func createBookmark(_ bookmarkPath: String, siteURL: String) throws -> Bool {
         let fm = FileManager.default
         let data = siteURL.data(using: .utf8)
-        return fm.createFile(atPath: bookmarkPath, contents: data, attributes: nil)
+        var status = false
+        if !fm.createFile(atPath: bookmarkPath, contents: data, attributes: nil) {
+            let pathArray = bookmarkPath.components(separatedBy: "/").dropLast()
+            try fm.createDirectory(atPath: pathArray.joined(separator: "/"),
+                               withIntermediateDirectories: true,
+                               attributes: nil)
+            status = fm.createFile(atPath: bookmarkPath, contents: data, attributes: nil)
+        }
+        return status
     }
 
     func edit(_ bookmarkPath: String) -> Bool {
