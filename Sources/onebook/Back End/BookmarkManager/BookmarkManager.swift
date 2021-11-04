@@ -4,7 +4,7 @@ import BookmarkParser
 struct BookmarkManager {
     var browser: Browser?
     var bookmarkFilePath: String?
-    var storageDirectory: String? = try! ConfigManager().loadPreferences().storageDirectory
+    var storageDirectory: String = try! ConfigManager().loadPreferences().storageDirectory
 
     init() {
         browser = nil

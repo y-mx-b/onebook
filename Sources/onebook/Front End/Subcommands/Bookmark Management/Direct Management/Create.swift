@@ -19,7 +19,8 @@ extension Onebook {
 
         mutating func run() {
             do {
-                try BookmarkManager().createBookmark(at: bookmarkPath, siteURL: siteURL)
+                let bm = BookmarkManager()
+                try bm.createBookmark(at: bm.storageDirectory + bookmarkPath, siteURL: siteURL)
             } catch {
                 print(error.localizedDescription)
             }
