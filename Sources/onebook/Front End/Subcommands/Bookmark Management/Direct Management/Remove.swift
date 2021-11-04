@@ -12,6 +12,12 @@ extension Onebook {
         var bookmarkPath: String = ""
 
         mutating func run() {
+            do {
+                let bm = BookmarkManager()
+                try bm.removeBookmark(bm.storageDirectory + bookmarkPath)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
