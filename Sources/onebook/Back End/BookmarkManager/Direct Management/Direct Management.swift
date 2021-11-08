@@ -21,7 +21,10 @@ extension BookmarkManager {
         try fm.removeItem(atPath: bookmarkPath)
     }
 
-    func renameBookmark(_ originalPath: String?, to newPath: String?) {
+    func renameBookmark(_ originalPath: String, to newPath: String) throws {
         let fm = FileManager.default
+        let bm = BookmarkManager()
+        _ = try fm.replaceItemAt(URL(fileURLWithPath: bm.getFullPath(newPath)),
+                         withItemAt: URL(fileURLWithPath: bm.getFullPath(originalPath)))
     }
 }

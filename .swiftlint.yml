@@ -1,2 +1,5 @@
 identifier_name:
   min_length: 2
+force_cast: warning
+force_try:
+  severity: warning

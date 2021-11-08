@@ -20,4 +20,8 @@ struct BookmarkManager {
         browser = nil
         self.bookmarkFilePath = bookmarkFilePath
     }
+
+    func getFullPath(_ bookmarkFilePath: String) -> String {
+        return storageDirectory + bookmarkFilePath
+    }
 }

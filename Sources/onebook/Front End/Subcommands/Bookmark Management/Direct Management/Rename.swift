@@ -18,6 +18,12 @@ extension Onebook {
         var newBookmarkPath: String = ""
 
         mutating func run() {
+            do {
+                let bm = BookmarkManager()
+                try bm.renameBookmark(oldBookmarkPath, to: newBookmarkPath)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
