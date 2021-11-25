@@ -9,6 +9,34 @@ enum ConfigError: Error {
     case invalidBrowser(String)
     case invalidFormatType(String)
     case generic(String)
+
+    var errorDescription: String? {
+        switch self {
+        // KEY
+        case .invalidKey(let key):
+            return """
+                    Invalid key was supplied: "\(key)".
+                    """
+        // VALUES
+        case .notBool(let bool):
+            return """
+                    Invalid value was supplied: "\(bool)".
+                    Expected: "on" or "off".
+                    """
+        case .invalidBrowser(let browser):
+            return """
+                    Invalid value was supplied: "\(browser)" is not a valid browser.
+                    """
+        case .invalidFormatType(let format):
+            return """
+                    Invalid value was supplied: "\(format)" is not a valid format.
+                    """
+        case .generic(let value):
+            return """
+                    Invalid value was supplied: "\(value)".
+                    """
+        }
+    }
 }
 
 fileprivate func checkIfBool(_ value: String) throws -> Bool {
@@ -43,10 +71,9 @@ fileprivate func checkFormatTypes(_ value: String) throws -> [String] {
 }
 
 struct ConfigManager {
-
-    func set(_ key: String?, value: String?) throws {
-        guard let pKey = PreferenceKeys(rawValue: key!) else {
-            throw ConfigError.invalidKey(value!)
+    func set(_ key: String, value: String) throws {
+        guard let pKey = PreferenceKeys(rawValue: key) else {
+            throw ConfigError.invalidKey(value)
         }
 
         let fm = FileManager.default
@@ -58,24 +85,24 @@ struct ConfigManager {
         switch pKey {
         // PATHS
         case .storageDirectory:
-            newPreferences.storageDirectory = value!
+            newPreferences.storageDirectory = value
         case .configPath:
-            newPreferences.configPath = value!
+            newPreferences.configPath = value
         // SETTINGS
         case .configState:
-            newPreferences.configState = try checkIfBool(value!)
+            newPreferences.configState = try checkIfBool(value)
         case .editor:
-            newPreferences.editor = value!
+            newPreferences.editor = value
         case .importDefault:
-            newPreferences.importDefault = try checkBrowsers(value!)
+            newPreferences.importDefault = try checkBrowsers(value)
         case .cleanPreferences:
             newPreferences.cleanPreferences = [:]
             // clear cleanPreferences to overwrite it
             let allCleanPreferences: Set = ["f", "b"]
-            let cleanPreferences: Set = Set(value!.lowercased().components(separatedBy: ","))
+            let cleanPreferences: Set = Set(value.lowercased().components(separatedBy: ","))
 
             guard cleanPreferences.isSubset(of: allCleanPreferences) else {
-                throw ConfigError.generic(value!)
+                throw ConfigError.generic(value)
             }
 
             if cleanPreferences.contains("f") {
@@ -90,16 +117,16 @@ struct ConfigManager {
                 newPreferences.cleanPreferences[CleanState.emptyBookmarks.rawValue] = false
             }
         case .syncDefault:
-            newPreferences.importDefault = try checkBrowsers(value!)
+            newPreferences.importDefault = try checkBrowsers(value)
         case .exportDefault:
-            newPreferences.exportDefault = try checkFormatTypes(value!)
+            newPreferences.exportDefault = try checkFormatTypes(value)
         case .readingList:
-            newPreferences.readingList = try checkIfBool(value!)
+            newPreferences.readingList = try checkIfBool(value)
         case .debug:
-            newPreferences.debug = try checkIfBool(value!)
+            newPreferences.debug = try checkIfBool(value)
         // FUN
         case .progressBar:
-            newPreferences.progressBar = try checkIfBool(value!)
+            newPreferences.progressBar = try checkIfBool(value)
         }
 
         let newPreferencesData = try! ple.encode(newPreferences)
