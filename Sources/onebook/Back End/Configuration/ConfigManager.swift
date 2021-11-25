@@ -138,13 +138,13 @@ struct ConfigManager {
         let preferencesPath = Preferences().preferencesPath
         guard let preferencesData = FileManager.default.contents(atPath: preferencesPath)
             else { throw InitErrors.noPreferences(preferencesPath) }
-        return try! PropertyListDecoder().decode(Preferences.self, from: preferencesData)
+        return try PropertyListDecoder().decode(Preferences.self, from: preferencesData)
     }
 
     func runConfig() throws {
         let task = Process()
         let preferences = try loadPreferences()
         task.executableURL = URL(fileURLWithPath: preferences.configPath)
-        try! task.run()
+        try task.run()
     }
 }
