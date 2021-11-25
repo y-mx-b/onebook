@@ -129,8 +129,8 @@ struct ConfigManager {
             newPreferences.progressBar = try checkIfBool(value)
         }
 
-        let newPreferencesData = try! ple.encode(newPreferences)
-        try! fm.removeItem(atPath: Preferences().preferencesPath)
+        let newPreferencesData = try ple.encode(newPreferences)
+        try fm.removeItem(atPath: Preferences().preferencesPath)
         fm.createFile(atPath: Preferences().preferencesPath, contents: newPreferencesData, attributes: nil)
     }
 
