@@ -2,7 +2,7 @@ import ArgumentParser
 
 extension Onebook {
     struct Rename: ParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Remove a bookmark.")
+        static var configuration = CommandConfiguration(abstract: "Rename a bookmark.")
         @OptionGroup var options: Onebook.Options
         @Argument(
             help: ArgumentHelp(
