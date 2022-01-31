@@ -10,14 +10,18 @@ extension Onebook {
         @Argument(
             help: ArgumentHelp(
                 "The preference to set.",
-                valueName: "preference-key"))
-            var preferenceKey: String
+                valueName: "preference-key"
+            )
+        )
+        var preferenceKey: String
 
-            @Argument(
-                help: ArgumentHelp(
-                    "The new value to set the preference to.",
-                    valueName: "new-value"))
-            var newValue: String
+        @Argument(
+            help: ArgumentHelp(
+                "The new value to set the preference to.",
+                valueName: "new-value"
+            )
+        )
+        var newValue: String
 
         mutating func run() {
             let cm = ConfigManager()

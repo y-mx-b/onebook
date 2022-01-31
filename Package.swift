@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "onebook",
     platforms: [
-        .macOS(.v10_13)
+        .macOS(.v10_13),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,9 +23,11 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "BookmarkParser", package: "BookmarkParser"),
                 // .product(name: "TOMLDecoder", package: "TOMLDecoder")
-            ]),
+            ]
+        ),
         .testTarget(
             name: "onebookTests",
-            dependencies: ["onebook"]),
+            dependencies: ["onebook"]
+        ),
     ]
 )

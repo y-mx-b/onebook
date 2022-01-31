@@ -32,14 +32,15 @@ struct Preferences: Codable {
         do {
             if try InitManager().checkForConfigFile(configPath) {
                 return try! URL(fileURLWithPath: configPath)
-                                .resourceValues(forKeys: [URLResourceKey.contentModificationDateKey])
-                                .contentModificationDate?.timeIntervalSince1970
+                    .resourceValues(forKeys: [URLResourceKey.contentModificationDateKey])
+                    .contentModificationDate?.timeIntervalSince1970
             }
         } catch {
             print(error.localizedDescription)
         }
         return 0.0
     }
+
     var configModifiedDate: TimeInterval? = 0.0
 
     // PATHS
@@ -51,8 +52,10 @@ struct Preferences: Codable {
     var configState: Bool = true
     var editor: String = ProcessInfo.processInfo.environment["EDITOR"]!
     var importDefault: [String] = [Browser.chrome.rawValue]
-    var cleanPreferences: [String : Bool] = [CleanState.emptyFolders.rawValue : false,
-                                            CleanState.emptyBookmarks.rawValue : true]
+    var cleanPreferences: [String: Bool] = [
+        CleanState.emptyFolders.rawValue: false,
+        CleanState.emptyBookmarks.rawValue: true,
+    ]
     var syncDefault: [String] = [Browser.chrome.rawValue]
     var exportDefault: [String] = [FormatTypes.html.rawValue]
     var readingList: Bool = false

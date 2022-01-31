@@ -47,7 +47,7 @@ struct InitManager {
     func createConfigFile(_ configPath: String) -> Bool {
         let fm = FileManager.default
 
-        var attributes = [FileAttributeKey : Any]()
+        var attributes = [FileAttributeKey: Any]()
         attributes[.posixPermissions] = 0o755
 
         var pathArray = configPath.components(separatedBy: "/")
@@ -97,8 +97,11 @@ struct InitManager {
 
         if !fm.createFile(atPath: preferences.preferencesPath, contents: preferencesData, attributes: nil) {
             do {
-                try fm.createDirectory(atPath: directoryPath, withIntermediateDirectories: true,
-                                       attributes: nil)
+                try fm.createDirectory(
+                    atPath: directoryPath,
+                    withIntermediateDirectories: true,
+                    attributes: nil
+                )
                 fm.createFile(atPath: preferences.preferencesPath, contents: preferencesData, attributes: nil)
                 return true
             } catch {

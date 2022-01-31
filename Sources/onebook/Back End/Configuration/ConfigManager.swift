@@ -13,28 +13,28 @@ enum ConfigError: Error {
     var errorDescription: String? {
         switch self {
         // KEY
-        case .invalidKey(let key):
+        case let .invalidKey(key):
             return """
-                    Invalid key was supplied: "\(key)".
-                    """
+                Invalid key was supplied: "\(key)".
+                """
         // VALUES
-        case .notBool(let bool):
+        case let .notBool(bool):
             return """
-                    Invalid value was supplied: "\(bool)".
-                    Expected: "on" or "off".
-                    """
-        case .invalidBrowser(let browser):
+                Invalid value was supplied: "\(bool)".
+                Expected: "on" or "off".
+                """
+        case let .invalidBrowser(browser):
             return """
-                    Invalid value was supplied: "\(browser)" is not a valid browser.
-                    """
-        case .invalidFormatType(let format):
+                Invalid value was supplied: "\(browser)" is not a valid browser.
+                """
+        case let .invalidFormatType(format):
             return """
-                    Invalid value was supplied: "\(format)" is not a valid format.
-                    """
-        case .generic(let value):
+                Invalid value was supplied: "\(format)" is not a valid format.
+                """
+        case let .generic(value):
             return """
-                    Invalid value was supplied: "\(value)".
-                    """
+                Invalid value was supplied: "\(value)".
+                """
         }
     }
 }
@@ -99,7 +99,7 @@ struct ConfigManager {
             newPreferences.cleanPreferences = [:]
             // clear cleanPreferences to overwrite it
             let allCleanPreferences: Set = ["f", "b"]
-            let cleanPreferences: Set = Set(value.lowercased().components(separatedBy: ","))
+            let cleanPreferences = Set(value.lowercased().components(separatedBy: ","))
 
             guard cleanPreferences.isSubset(of: allCleanPreferences) else {
                 throw ConfigError.generic(value)
@@ -137,7 +137,7 @@ struct ConfigManager {
     func loadPreferences() throws -> Preferences {
         let preferencesPath = Preferences().preferencesPath
         guard let preferencesData = FileManager.default.contents(atPath: preferencesPath)
-            else { throw InitErrors.noPreferences(preferencesPath) }
+        else { throw InitErrors.noPreferences(preferencesPath) }
         return try PropertyListDecoder().decode(Preferences.self, from: preferencesData)
     }
 

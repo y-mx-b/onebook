@@ -8,7 +8,9 @@ extension Onebook {
             help: ArgumentHelp(
                 "The name and location of the bookmark you'll be removing.",
                 discussion: "Format as /folder_one/folder_two/bookmark_name",
-                valueName: "bookmark-path"))
+                valueName: "bookmark-path"
+            )
+        )
         var bookmarkPath: String = ""
 
         mutating func run() {

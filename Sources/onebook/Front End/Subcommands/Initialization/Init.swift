@@ -18,21 +18,21 @@ fileprivate func prompt() -> Bool {
 extension InitErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .noPreferences(let path):
+        case let .noPreferences(path):
             return """
-            Preferences file not found.
-            Expected preferences file at: \(path)
-            """
-        case .noConfig(let path):
+                Preferences file not found.
+                Expected preferences file at: \(path)
+                """
+        case let .noConfig(path):
             return """
-            Configuration file not found.
-            Expected configuration file at: \(path)
-            """
-        case .noStorage(let path):
+                Configuration file not found.
+                Expected configuration file at: \(path)
+                """
+        case let .noStorage(path):
             return """
-            Storage directory not found.
-            Expected storage directory at : \(path)
-            """
+                Storage directory not found.
+                Expected storage directory at : \(path)
+                """
         }
     }
 }
@@ -48,13 +48,13 @@ extension Onebook {
             let fm = FileManager.default
             var preferences = Preferences()
             let preferencesPath = preferences.preferencesPath
-            // TODO RUN CHECKS
-            //     TODO PREFERENCES
+            // TODO: RUN CHECKS
+            //     TODO: PREFERENCES
             //         if exists -> load preferences
             //         else -> create
-            //     TODO CONFIG
+            //     TODO: CONFIG
             //         if exists -> overwrite? -> yes, no
-            //     TODO STORAGE
+            //     TODO: STORAGE
             //         if not exist -> create
 
             // PREFERENCE CHECKS
@@ -66,12 +66,12 @@ extension Onebook {
                 } else {
                     print("Preferences file was empty.")
                     print("Overwriting preferences file...")
-                    let _ = im.createPreferencesFile()
+                    _ = im.createPreferencesFile()
                 }
             } catch {
                 print(error.localizedDescription)
                 print("Creating preferences file...")
-                let _ = im.createPreferencesFile()
+                _ = im.createPreferencesFile()
             }
 
             print()
@@ -82,14 +82,14 @@ extension Onebook {
                     if try im.checkForConfigFile(preferences.configPath) {
                         print("Configuration file found. Overwrite?")
                         if prompt() {
-                            let _ = im.createConfigFile(preferences.configPath)
+                            _ = im.createConfigFile(preferences.configPath)
                         }
                     }
                 } catch {
                     print(error.localizedDescription)
                     print("Create configuration file?")
                     if prompt() {
-                        let _ = im.createConfigFile(preferences.configPath)
+                        _ = im.createConfigFile(preferences.configPath)
                     } else {
                         print("Disable configuration file?")
                         if prompt() { try! ConfigManager().set("config", value: "off") }
@@ -101,12 +101,12 @@ extension Onebook {
 
             // STORAGE CHECKS
             do {
-                let _ = try im.checkForStorageDirectory(preferences.storageDirectory)
+                _ = try im.checkForStorageDirectory(preferences.storageDirectory)
                 print("Storage directory found.")
             } catch {
                 print(error.localizedDescription)
                 print("Creating storage directory...")
-                let _ = im.createStorageDirectory(preferences.storageDirectory)
+                _ = im.createStorageDirectory(preferences.storageDirectory)
             }
         }
     }

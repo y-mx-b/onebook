@@ -5,7 +5,7 @@ struct BookmarkManager {
     var storageDirectory: String = try! ConfigManager().loadPreferences().storageDirectory
 
     func getFullPath(_ bookmarkFilePath: String) -> String {
-        return storageDirectory + bookmarkFilePath
+        storageDirectory + bookmarkFilePath
     }
 
     // Direct Management
@@ -14,14 +14,16 @@ struct BookmarkManager {
         let data = siteURL.data(using: .utf8)
         if !fm.createFile(atPath: bookmarkPath, contents: data, attributes: nil) {
             let pathArray = bookmarkPath.components(separatedBy: "/").dropLast()
-            try fm.createDirectory(atPath: pathArray.joined(separator: "/"),
-                               withIntermediateDirectories: true,
-                               attributes: nil)
+            try fm.createDirectory(
+                atPath: pathArray.joined(separator: "/"),
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
             fm.createFile(atPath: bookmarkPath, contents: data, attributes: nil)
         }
     }
 
-    func edit(_ bookmarkPath: String) {
+    func edit(_: String) {
     }
 
     func removeBookmark(_ bookmarkPath: String) throws {
@@ -32,8 +34,10 @@ struct BookmarkManager {
     func renameBookmark(_ originalPath: String, to newPath: String) throws {
         let fm = FileManager.default
         let bm = BookmarkManager()
-        _ = try fm.replaceItemAt(URL(fileURLWithPath: bm.getFullPath(newPath)),
-                         withItemAt: URL(fileURLWithPath: bm.getFullPath(originalPath)))
+        _ = try fm.replaceItemAt(
+            URL(fileURLWithPath: bm.getFullPath(newPath)),
+            withItemAt: URL(fileURLWithPath: bm.getFullPath(originalPath))
+        )
     }
 
     // Automated Management
@@ -41,9 +45,9 @@ struct BookmarkManager {
     }
 
     func importBookmarks(_ browser: Browser, at storageDirectory: String) throws -> Bool {
-        return false
+        false
     }
 
-    func syncBookmarks(_ browsers: [String]) {
+    func syncBookmarks(_: [String]) {
     }
 }
